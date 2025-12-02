@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Search Lab - Logo Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;500;700;900&family=DM+Serif+Display&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --text-color: #ffffff;
+            --accent-color: #3b82f6;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            margin-bottom: 60px;
+            letter-spacing: -0.02em;
+            opacity: 0.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Concept 1: Minimalist Typographic */
+        .c1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.04em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .c1 .icon {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #000;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        /* Concept 2: Tech/Data Dots */
+        .c2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c2-icon {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+        }
+
+        .c2-dot {
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .c2-dot:nth-child(2) {
+            opacity: 0.7;
+        }
+
+        .c2-dot:nth-child(3) {
+            opacity: 0.4;
+        }
+
+        .c2-dot:nth-child(4) {
+            opacity: 1;
+            background: #fff;
+        }
+
+        /* Concept 3: The Lens/Search */
+        .c3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .c3-icon {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .c3-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 10px;
+            height: 3px;
+            background: #fff;
+            transform: rotate(45deg);
+        }
+
+        .c3-sparkle {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 6px;
+            height: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #3b82f6;
+        }
+
+        /* Concept 4: Abstract Node */
+        .c4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 22px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .c4-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .c4-circle {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .c4-c1 {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-color: #3b82f6;
+        }
+
+        .c4-c2 {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+        }
+
+        .c4-c3 {
+            width: 20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background: #fff;
+        }
+
+        /* Concept 5: Editorial/Lab */
+        .c5 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .c5 span {
+            color: #3b82f6;
+            font-family: 'Inter', sans-serif;
+            font-size: 40px;
+            line-height: 0;
+            transform: translateY(5px);
+        }
+
+        /* Concept 6: Brackets/Code */
+        .c6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .c6-bracket {
+            color: #3b82f6;
+            font-weight: 300;
+            font-size: 32px;
+        }
+
+        /* Concept 7: Gradient Flow */
+        .c7 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            background: linear-gradient(135deg, #fff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+        }
+
+        /* Concept 8: Monogram */
+        .c8 {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .c8-mark {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            color: #000;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+        }
+
+        .c8-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 1.1;
+        }
+
+        .c8-sub {
+            font-size: 12px;
+            opacity: 0.6;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Round 2 Styles */
+        /* Concept 9: Bracket Node */
+        .c9 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .c9-icon {
+            display: flex;
+            align-items: center;
+            color: #3b82f6;
+            font-weight: 300;
+            font-size: 28px;
+            gap: 4px;
+        }
+
+        .c9-circle {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+
+        /* Concept 10: Connected Brackets */
+        .c10 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c10-icon {
+            display: flex;
+            align-items: center;
+            color: #3b82f6;
+            font-size: 24px;
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .c10-line {
+            width: 16px;
+            height: 2px;
+            background: #fff;
+            margin: 0 2px;
+        }
+
+        /* Concept 11: Digital Lens */
+        .c11 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .c11-icon {
+            width: 32px;
+            height: 32px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .c11-b {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            border-right-color: transparent;
+            transform: rotate(-45deg);
+        }
+
+        .c11-handle {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 8px;
+            height: 2px;
+            background: #fff;
+            transform: rotate(45deg) translate(2px, 2px);
+        }
+
+        /* Concept 12: Node Network */
+        .c12 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .c12-icon {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .c12-n {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .c12-l {
+            width: 20px;
+            height: 1px;
+            border-bottom: 1px dashed #3b82f6;
+        }
+
+        /* Concept 13: Recursive */
+        .c13 {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .c13-icon {
+            color: #3b82f6;
+            letter-spacing: -2px;
+            font-size: 28px;
+        }
+
+        /* Concept 14: Binary Node */
+        .c14 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c14-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #fff 50%, #3b82f6 50%);
+        }
+
+        /* Concept 15: Lab Syntax */
+        .c15 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+        .c15 b {
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        /* Concept 16: Orbit Code */
+        .c16 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c16-icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+
+        .c16-icon::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #3b82f6;
+            border-radius: 50%;
+        }
+
+        .c16-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        /* Round 3 Styles: The "L" Node */
+        /* Concept 17: Simple L */
+        .c17 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c17-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-start;
+        }
+
+        .c17-row {
+            display: flex;
+            gap: 4px;
+        }
+
+        .c17-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .c17-dot.blue {
+            background: #3b82f6;
+        }
+
+        .c17-line {
+            width: 20px;
+            height: 1px;
+            border-bottom: 1px dashed #3b82f6;
+            margin-top: 3px;
+        }
+
+        .c17-vline {
+            width: 1px;
+            height: 20px;
+            border-left: 1px dashed #3b82f6;
+            margin-left: 3px;
+        }
+
+        /* Concept 18: Connected L */
+        .c18 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c18-icon {
+            position: relative;
+            width: 24px;
+            height: 36px;
+        }
+
+        .c18-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .c18-d1 {
+            top: 0;
+            left: 0;
+        }
+
+        .c18-d2 {
+            bottom: 0;
+            left: 0;
+            background: #3b82f6;
+        }
+
+        .c18-d3 {
+            bottom: 0;
+            right: 0;
+        }
+
+        .c18-line {
+            position: absolute;
+            background: #3b82f6;
+            opacity: 0.5;
+        }
+
+        .c18-l1 {
+            width: 2px;
+            height: 100%;
+            left: 3px;
+            top: 0;
+        }
+
+        .c18-l2 {
+            width: 100%;
+            height: 2px;
+            bottom: 3px;
+            left: 0;
+        }
+
+        /* Concept 19: Abstract L Grid */
+        .c19 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c19-icon {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+        }
+
+        .c19-d {
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .c19-d.on {
+            background: #3b82f6;
+        }
+
+        /* Concept 20: Tech L */
+        .c20 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c20-icon {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .c20-v {
+            width: 4px;
+            height: 24px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        .c20-h {
+            width: 16px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 2px;
+            margin-left: 2px;
+        }
+
+        /* Round 4 Styles: Inline L */
+        /* Concept 21: Inline Node L */
+        .c21 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            display: flex;
+            align-items: baseline;
+            gap: 1px;
+        }
+
+        .c21-l {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 2px;
+            transform: translateY(4px);
+        }
+
+        .c21-v {
+            width: 2px;
+            height: 22px;
+            background: #3b82f6;
+            position: relative;
+        }
+
+        .c21-v::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border: 1px solid #3b82f6;
+            border-radius: 50%;
+        }
+
+        .c21-h {
+            width: 16px;
+            height: 2px;
+            background: #3b82f6;
+            position: relative;
+        }
+
+        .c21-h::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: -3px;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+
+        /* Concept 22: Constellation L */
+        .c22 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+        }
+
+        .c22-l {
+            position: relative;
+            width: 20px;
+            height: 28px;
+            margin-right: 4px;
+        }
+
+        .c22-d {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .c22-d1 {
+            top: 0;
+            left: 0;
+        }
+
+        .c22-d2 {
+            bottom: 0;
+            left: 0;
+        }
+
+        .c22-d3 {
+            bottom: 0;
+            right: 0;
+        }
+
+        .c22-line {
+            position: absolute;
+            background: #3b82f6;
+            opacity: 0.6;
+        }
+
+        .c22-l1 {
+            width: 1px;
+            height: 100%;
+            left: 2.5px;
+            top: 0;
+        }
+
+        .c22-l2 {
+            width: 100%;
+            height: 1px;
+            bottom: 2.5px;
+            left: 0;
+        }
+
+        /* Concept 23: Circuit L */
+        .c23 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .c23-l {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            width: 18px;
+            height: 28px;
+            margin-right: 2px;
+            position: relative;
+        }
+
+        .c23-path {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            width: 14px;
+            height: 24px;
+            border-left: 3px solid #3b82f6;
+            border-bottom: 3px solid #3b82f6;
+            border-radius: 0 0 0 4px;
+        }
+
+        .c23-dot {
+            position: absolute;
+            top: 0;
+            left: 1px;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+        }
+
+        /* Concept 24: Dashed L */
+        .c24 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 28px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .c24-l {
+            display: inline-flex;
+            flex-direction: column;
+            width: 20px;
+            height: 26px;
+            margin-right: 4px;
+            position: relative;
+        }
+
+        .c24-v {
+            position: absolute;
+            left: 4px;
+            top: 0;
+            bottom: 4px;
+            width: 1px;
+            border-left: 2px dashed #3b82f6;
+        }
+
+        .c24-h {
+            position: absolute;
+            left: 4px;
+            right: 0;
+            bottom: 4px;
+            height: 1px;
+            border-bottom: 2px dashed #3b82f6;
+        }
+
+        .c24-d {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Logo Directions</h1>
+
+    <div class="grid">
+        <!-- Concept 1 -->
+        <div class="card">
+            <span class="label">01. Minimalist</span>
+            <div class="c1">
+                <div class="icon">ai</div>
+                Search Lab
+            </div>
+        </div>
+
+        <!-- Concept 2 -->
+        <div class="card">
+            <span class="label">02. Data Grid</span>
+            <div class="c2">
+                <div class="c2-icon">
+                    <div class="c2-dot"></div>
+                    <div class="c2-dot"></div>
+                    <div class="c2-dot"></div>
+                    <div class="c2-dot"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+
+        <!-- Concept 3 -->
+        <div class="card">
+            <span class="label">03. Intelligent Lens</span>
+            <div class="c3">
+                <div class="c3-icon">
+                    <div class="c3-sparkle"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+
+        <!-- Concept 4 -->
+        <div class="card">
+            <span class="label">04. The Node</span>
+            <div class="c4">
+                <div class="c4-icon">
+                    <div class="c4-circle c4-c1"></div>
+                    <div class="c4-circle c4-c2"></div>
+                    <div class="c4-circle c4-c3"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+
+        <!-- Concept 5 -->
+        <div class="card">
+            <span class="label">05. Editorial</span>
+            <div class="c5">
+                AI Search Lab<span>.</span>
+            </div>
+        </div>
+
+        <!-- Concept 6 -->
+        <div class="card">
+            <span class="label">06. Code/Tech</span>
+            <div class="c6">
+                <span class="c6-bracket">[</span>
+                AI Search Lab
+                <span class="c6-bracket">]</span>
+            </div>
+        </div>
+
+        <!-- Concept 7 -->
+        <div class="card">
+            <span class="label">07. Fluid Gradient</span>
+            <div class="c7">
+                AI Search Lab
+            </div>
+        </div>
+
+        <!-- Concept 8 -->
+        <div class="card">
+            <span class="label">08. Industrial Monogram</span>
+            <div class="c8">
+                <div class="c8-mark">Ai</div>
+                <div class="c8-text">
+                    AI SEARCH<br>
+                    <span class="c8-sub">Laboratory</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 style="margin-top: 80px;">Round 2: Node & Code</h1>
+    <div class="grid">
+        <!-- Concept 9 -->
+        <div class="card">
+            <span class="label">09. Bracket Node</span>
+            <div class="c9">
+                <div class="c9-icon">[<div class="c9-circle"></div>]</div>
+                Search Lab
+            </div>
+        </div>
+        <!-- Concept 10 -->
+        <div class="card">
+            <span class="label">10. Connected</span>
+            <div class="c10">
+                <div class="c10-icon">[<div class="c10-line"></div>]</div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 11 -->
+        <div class="card">
+            <span class="label">11. Digital Lens</span>
+            <div class="c11">
+                <div class="c11-icon">
+                    <div class="c11-b"></div>
+                    <div class="c11-handle"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 12 -->
+        <div class="card">
+            <span class="label">12. Network</span>
+            <div class="c12">
+                <div class="c12-icon">
+                    <div class="c12-n"></div>
+                    <div class="c12-l"></div>
+                    <div class="c12-n" style="background:#3b82f6"></div>
+                    <div class="c12-l"></div>
+                    <div class="c12-n"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 13 -->
+        <div class="card">
+            <span class="label">13. Recursive</span>
+            <div class="c13">
+                <div class="c13-icon">[[ ]]</div>
+                Search Lab
+            </div>
+        </div>
+        <!-- Concept 14 -->
+        <div class="card">
+            <span class="label">14. Binary Node</span>
+            <div class="c14">
+                <div class="c14-icon"></div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 15 -->
+        <div class="card">
+            <span class="label">15. Syntax</span>
+            <div class="c15">
+                AI Search <b>{Lab}</b>
+            </div>
+        </div>
+        <!-- Concept 16 -->
+        <div class="card">
+            <span class="label">16. Orbit</span>
+            <div class="c16">
+                <div class="c16-icon"></div>
+                AI Search Lab
+            </div>
+        </div>
+    </div>
+
+    <h1 style="margin-top: 80px;">Round 3: The "L" Node</h1>
+    <div class="grid">
+        <!-- Concept 17 -->
+        <div class="card">
+            <span class="label">17. Node L</span>
+            <div class="c17">
+                <div class="c17-icon">
+                    <div class="c17-dot"></div>
+                    <div class="c17-vline"></div>
+                    <div class="c17-dot blue"></div>
+                    <div class="c17-row">
+                        <div class="c17-line"></div>
+                        <div class="c17-dot"></div>
+                    </div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 18 -->
+        <div class="card">
+            <span class="label">18. Connected L</span>
+            <div class="c18">
+                <div class="c18-icon">
+                    <div class="c18-line c18-l1"></div>
+                    <div class="c18-line c18-l2"></div>
+                    <div class="c18-dot c18-d1"></div>
+                    <div class="c18-dot c18-d2"></div>
+                    <div class="c18-dot c18-d3"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 19 -->
+        <div class="card">
+            <span class="label">19. Grid L</span>
+            <div class="c19">
+                <div class="c19-icon">
+                    <div class="c19-d on"></div>
+                    <div class="c19-d"></div>
+                    <div class="c19-d on"></div>
+                    <div class="c19-d"></div>
+                    <div class="c19-d on"></div>
+                    <div class="c19-d on"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+        <!-- Concept 20 -->
+        <div class="card">
+            <span class="label">20. Tech Block L</span>
+            <div class="c20">
+                <div class="c20-icon">
+                    <div class="c20-v"></div>
+                    <div class="c20-h"></div>
+                </div>
+                AI Search Lab
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

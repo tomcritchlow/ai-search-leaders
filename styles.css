@@ -1,0 +1,5 @@
+/* 
+Styles are now handled by Tailwind CSS in index.html.
+This file is kept empty to avoid 404s if referenced elsewhere, 
+but the link has been removed from index.html.
+*/
