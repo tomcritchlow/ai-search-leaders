@@ -1,6 +1,5 @@
 title: Search Leaders
 description: Exploring the future of search and artificial intelligence.
 url: "https://searchleaders.ai"
-theme: jekyll-theme-prime # Optional: just setting a default, though we are using custom HTML/CSS
 plugins:
   - jekyll-seo-tag
