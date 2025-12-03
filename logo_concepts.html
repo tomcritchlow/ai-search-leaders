@@ -873,6 +873,506 @@
             background: #3b82f6;
             border-radius: 50%;
         }
+
+        /* Round 5 Styles: Neon Cyber */
+        /* Concept 25: Glitch Terminal */
+        .c25 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c25-icon {
+            color: #ccff00;
+            text-shadow: 2px 0 #d946ef;
+            font-size: 28px;
+        }
+
+        /* Concept 26: Neon Grid L */
+        .c26 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c26-icon {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            padding: 4px;
+            border: 1px solid #333;
+            background: rgba(204, 255, 0, 0.05);
+        }
+
+        .c26-d {
+            width: 6px;
+            height: 6px;
+            background: #333;
+        }
+
+        .c26-d.on {
+            background: #ccff00;
+            box-shadow: 0 0 5px #ccff00;
+        }
+
+        /* Concept 27: Cyber Bracket */
+        .c27 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .c27-icon {
+            display: flex;
+            align-items: center;
+            color: #d946ef;
+            font-weight: 700;
+            font-size: 26px;
+        }
+
+        .c27-bar {
+            width: 2px;
+            height: 20px;
+            background: #ccff00;
+            margin: 0 4px;
+            box-shadow: 0 0 5px #ccff00;
+        }
+
+        /* Concept 28: Hex Node */
+        .c28 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .c28-icon {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .c28-hex {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: transparent;
+            border: 2px solid #ccff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .c28-hex::before {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: rgba(204, 255, 0, 0.1);
+        }
+
+        .c28-dot {
+            width: 6px;
+            height: 6px;
+            background: #d946ef;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #d946ef;
+            z-index: 2;
+        }
+
+        /* Round 6 Styles: Yellow Square Riffs */
+        /* Concept 29: The Original */
+        .c29 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c29-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            border-radius: 2px;
+        }
+
+        /* Concept 30: Blinking Block */
+        .c30 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c30-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2px;
+        }
+
+        .c30-cursor {
+            width: 12px;
+            height: 12px;
+            background: #000;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Concept 31: Pixel Search */
+        .c31 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c31-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .c31-glass {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid #000;
+            border-radius: 50%;
+        }
+
+        .c31-handle {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 6px;
+            height: 2px;
+            background: #000;
+            transform: rotate(45deg);
+            transform-origin: bottom right;
+        }
+
+        /* Concept 32: Monogram S */
+        .c32 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c32-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            border-radius: 2px;
+            line-height: 1;
+        }
+
+        /* Round 7 Styles: L-Face */
+        /* Concept 33: The Watcher */
+        .c33 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c33-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .c33-eye {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #000;
+            border-radius: 50%;
+            top: 8px;
+        }
+
+        .c33-eye.left {
+            left: 8px;
+        }
+
+        .c33-eye.right {
+            right: 8px;
+        }
+
+        .c33-nose {
+            position: absolute;
+            bottom: 6px;
+            left: 10px;
+            width: 12px;
+            height: 12px;
+            border-left: 3px solid #000;
+            border-bottom: 3px solid #000;
+        }
+
+        /* Concept 34: Side Profile */
+        .c34 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c34-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .c34-l {
+            position: absolute;
+            top: 6px;
+            left: 8px;
+            width: 16px;
+            height: 20px;
+            border-left: 4px solid #000;
+            border-bottom: 4px solid #000;
+        }
+
+        .c34-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 4px;
+            height: 4px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* Concept 35: Robot L */
+        .c35 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c35-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .c35-eyes {
+            position: absolute;
+            top: 8px;
+            left: 6px;
+            right: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .c35-eye {
+            width: 6px;
+            height: 6px;
+            background: #000;
+            border-radius: 1px;
+        }
+
+        .c35-mouth {
+            position: absolute;
+            bottom: 6px;
+            left: 10px;
+            width: 12px;
+            height: 8px;
+            border-left: 3px solid #000;
+            border-bottom: 3px solid #000;
+            transform: rotate(-45deg);
+        }
+
+        /* Concept 36: Minimalist Face */
+        .c36 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c36-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 20px;
+            color: #000;
+            gap: 2px;
+        }
+
+        .c36-l {
+            transform: rotate(90deg);
+            font-size: 18px;
+        }
+
+        /* Round 8 Styles: Blinking Eye */
+        /* Concept 37: Blinking L-Face */
+        .c37 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c37-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .c37-eye {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            width: 4px;
+            height: 10px;
+            background: #000;
+            animation: blink-cursor 1s step-end infinite;
+        }
+
+        .c37-mouth {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            width: 12px;
+            height: 4px;
+            background: #000;
+        }
+
+        @keyframes blink-cursor {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Round 9 Styles: Static Eye */
+        /* Concept 38: Static L-Face */
+        .c38 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .c38-icon {
+            width: 32px;
+            height: 32px;
+            background: #ccff00;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .c38-eye {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            width: 4px;
+            height: 10px;
+            background: #000;
+        }
+
+        .c38-mouth {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            width: 12px;
+            height: 4px;
+            background: #000;
+        }
     </style>
 </head>
 
@@ -1101,6 +1601,200 @@
                 AI Search Lab
             </div>
         </div>
+        <!-- Round 5: Neon Cyber -->
+        <h2
+            style="grid-column: 1/-1; margin-top: 40px; font-family: 'JetBrains Mono', monospace; color: #ccff00; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #333; padding-bottom: 20px;">
+            // Round 05: Neon Cyber
+        </h2>
+
+        <!-- Concept 25 -->
+        <div class="card">
+            <span class="label">Concept 25</span>
+            <div class="c25">
+                <div class="c25-icon">>_</div>
+                <div>SEARCH_LEADERS</div>
+            </div>
+        </div>
+
+        <!-- Concept 26 -->
+        <div class="card">
+            <span class="label">Concept 26</span>
+            <div class="c26">
+                <div class="c26-icon">
+                    <div class="c26-d on"></div>
+                    <div class="c26-d"></div>
+                    <div class="c26-d on"></div>
+                    <div class="c26-d"></div>
+                    <div class="c26-d on"></div>
+                    <div class="c26-d on"></div>
+                </div>
+                <div>AI Search Leaders</div>
+            </div>
+        </div>
+
+        <!-- Concept 27 -->
+        <div class="card">
+            <span class="label">Concept 27</span>
+            <div class="c27">
+                <div class="c27-icon">
+                    [<div class="c27-bar"></div>]
+                </div>
+                <div>AI_SEARCH_LAB</div>
+            </div>
+        </div>
+
+        <!-- Concept 28 -->
+        <div class="card">
+            <span class="label">Concept 28</span>
+            <div class="c28">
+                <div class="c28-icon">
+                    <div class="c28-hex"></div>
+                    <div class="c28-dot"></div>
+                </div>
+                <div>Search Leaders</div>
+            </div>
+        </div>
+
+        <!-- Round 6: Yellow Square Riffs -->
+        <h2
+            style="grid-column: 1/-1; margin-top: 40px; font-family: 'JetBrains Mono', monospace; color: #ccff00; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #333; padding-bottom: 20px;">
+            // Round 06: Yellow Square Riffs
+        </h2>
+
+        <!-- Concept 29 -->
+        <div class="card">
+            <span class="label">Concept 29</span>
+            <div class="c29">
+                <div class="c29-icon">_</div>
+                <div>AI_SEARCH_LEADERS</div>
+            </div>
+        </div>
+
+        <!-- Concept 30 -->
+        <div class="card">
+            <span class="label">Concept 30</span>
+            <div class="c30">
+                <div class="c30-icon">
+                    <div class="c30-cursor"></div>
+                </div>
+                <div>Search_Lab</div>
+            </div>
+        </div>
+
+        <!-- Concept 31 -->
+        <div class="card">
+            <span class="label">Concept 31</span>
+            <div class="c31">
+                <div class="c31-icon">
+                    <div class="c31-glass"></div>
+                    <div class="c31-handle"></div>
+                </div>
+                <div>Search Leaders</div>
+            </div>
+        </div>
+
+        <!-- Concept 32 -->
+        <div class="card">
+            <span class="label">Concept 32</span>
+            <div class="c32">
+                <div class="c32-icon">S</div>
+                <div>Search Leaders</div>
+            </div>
+        </div>
+
+        <!-- Round 7: L-Face -->
+        <h2
+            style="grid-column: 1/-1; margin-top: 40px; font-family: 'JetBrains Mono', monospace; color: #ccff00; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #333; padding-bottom: 20px;">
+            // Round 07: L-Face
+        </h2>
+
+        <!-- Concept 33 -->
+        <div class="card">
+            <span class="label">Concept 33</span>
+            <div class="c33">
+                <div class="c33-icon">
+                    <div class="c33-eye left"></div>
+                    <div class="c33-eye right"></div>
+                    <div class="c33-nose"></div>
+                </div>
+                <div>AI_SEARCH_LEADERS</div>
+            </div>
+        </div>
+
+        <!-- Concept 34 -->
+        <div class="card">
+            <span class="label">Concept 34</span>
+            <div class="c34">
+                <div class="c34-icon">
+                    <div class="c34-l"></div>
+                    <div class="c34-dot"></div>
+                </div>
+                <div>Search_Lab</div>
+            </div>
+        </div>
+
+        <!-- Concept 35 -->
+        <div class="card">
+            <span class="label">Concept 35</span>
+            <div class="c35">
+                <div class="c35-icon">
+                    <div class="c35-eyes">
+                        <div class="c35-eye"></div>
+                        <div class="c35-eye"></div>
+                    </div>
+                    <div class="c35-mouth"></div>
+                </div>
+                <div>Search Leaders</div>
+            </div>
+        </div>
+
+        <!-- Concept 36 -->
+        <div class="card">
+            <span class="label">Concept 36</span>
+            <div class="c36">
+                <div class="c36-icon">
+                    :L
+                </div>
+                <div>Search Leaders</div>
+            </div>
+        </div>
+
+        <!-- Round 8: Blinking Eye -->
+        <h2
+            style="grid-column: 1/-1; margin-top: 40px; font-family: 'JetBrains Mono', monospace; color: #ccff00; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #333; padding-bottom: 20px;">
+            // Round 08: Blinking Eye
+        </h2>
+
+        <!-- Concept 37 -->
+        <div class="card">
+            <span class="label">Concept 37</span>
+            <div class="c37">
+                <div class="c37-icon">
+                    <div class="c37-eye"></div>
+                    <div class="c37-mouth"></div>
+                </div>
+                <div>AI_SEARCH_LEADERS</div>
+            </div>
+        </div>
+
+        <!-- Round 9: Static Eye -->
+        <h2
+            style="grid-column: 1/-1; margin-top: 40px; font-family: 'JetBrains Mono', monospace; color: #ccff00; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #333; padding-bottom: 20px;">
+            // Round 09: Static Eye
+        </h2>
+
+        <!-- Concept 38 -->
+        <div class="card">
+            <span class="label">Concept 38</span>
+            <div class="c38">
+                <div class="c38-icon">
+                    <div class="c38-eye"></div>
+                    <div class="c38-mouth"></div>
+                </div>
+                <div>AI_SEARCH_LEADERS</div>
+            </div>
+        </div>
+
     </div>
 
 </body>
