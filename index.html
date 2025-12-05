@@ -483,69 +483,100 @@ title: Home
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Beta Pricing -->
-                <div class="relative bg-slate-900 border border-neon-green p-10 shadow-[0_0_30px_rgba(204,255,0,0.1)]">
+                <!-- Founding Member Pricing -->
+                <div
+                    class="relative bg-slate-900 border border-neon-green p-10 shadow-[0_0_30px_rgba(204,255,0,0.1)] flex flex-col">
                     <div class="absolute top-0 right-0 bg-neon-green text-black text-xs font-bold px-3 py-1 uppercase">
-                        Beta_Cohort_Active
+                        Launch_Offer_Active
                     </div>
                     <div class="border-b border-slate-800 pb-8 mb-8">
-                        <h3 class="text-2xl font-bold text-white mb-4">Launch Access</h3>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-5xl font-bold text-neon-green tracking-tight">$500</span>
-                            <span class="text-lg text-slate-500">/yr</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Founding Member</h3>
+                        <p class="text-slate-400 text-xs mb-6">For in-house leads & solo consultants.</p>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-5xl font-bold text-neon-green tracking-tight">$250</span>
+                                <span class="text-sm text-slate-400">/ first 6 months</span>
+                            </div>
+                            <div class="text-slate-500 text-sm">then $100/month thereafter</div>
                         </div>
-                        <div class="mt-4 text-neon-green text-sm">
-                            [ 50% Early Adopter Discount Applied ]
+                        <div
+                            class="mt-4 p-2 bg-neon-green/10 border border-neon-green/30 rounded-sm text-neon-green text-xs text-center">
+                            // LIMITED_TIME: Save 58% on standard rate
                         </div>
                     </div>
                     <div class="flex-1 flex flex-col">
                         <ul class="space-y-4 mb-10 flex-1 text-sm text-slate-300">
-                            <li class="flex items-center gap-3">
-                                <span class="text-neon-green">✓</span> Curriculum & SOPs
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-green mt-0.5">✓</span>
+                                <span><strong class="text-white">LLMO Academy access</strong> (Video Modules)</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-neon-green">✓</span> Proprietary Data
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-green mt-0.5">✓</span>
+                                <span><strong class="text-white">Bi-Weekly Strategy</strong> "Office Hours"</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-neon-green">✓</span> War Room Community
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-green mt-0.5">✓</span>
+                                <span><strong class="text-white">Weekly Data Drops</strong> (Volatility Tracking)</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-neon-green">✓</span> Founder Access
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-green mt-0.5">✓</span>
+                                <span><strong class="text-white">Prompt Vault</strong> (Classified Library)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-green mt-0.5">✓</span>
+                                <span><strong class="text-white">Private Slack</strong> (Strictly no sales)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-green mt-0.5">+</span>
+                                <span class="text-neon-green">BONUS: 1-on-1 Onboarding Call</span>
                             </li>
                         </ul>
-                        <a href="mailto:tom@tomcritchlow.com?subject=AI%20Search%20Lab%20Beta%20Application"
-                            class="block w-full py-4 bg-neon-green hover:bg-white text-black font-bold text-center transition-all uppercase tracking-wider">
-                            Initialize_Application
+                        <a href="mailto:tom@tomcritchlow.com?subject=Founding%20Member%20Application"
+                            class="block w-full py-4 bg-neon-green hover:bg-white text-black font-bold text-center transition-all uppercase tracking-wider shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(204,255,0,0.5)]">
+                            Become_Founding_Member
                         </a>
                     </div>
                 </div>
 
-                <!-- Standard Pricing -->
-                <div class="bg-slate-950 border border-slate-800 p-10 opacity-50 grayscale">
+                <!-- Agency Partner Pricing -->
+                <div
+                    class="bg-slate-950 border border-slate-800 p-10 flex flex-col hover:border-neon-purple transition-colors group">
                     <div class="border-b border-slate-800 pb-8 mb-8">
-                        <h3 class="text-2xl font-bold text-slate-500 mb-4">Standard</h3>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">
+                            Agency Partner</h3>
+                        <p class="text-slate-400 text-xs mb-6">For agencies wanting an AI edge.</p>
                         <div class="flex items-baseline gap-2">
-                            <span class="text-5xl font-bold text-slate-600 tracking-tight">$1,000</span>
-                            <span class="text-lg text-slate-600">/yr</span>
+                            <span class="text-4xl font-bold text-white tracking-tight">Custom</span>
                         </div>
+                        <div class="text-slate-500 text-sm mt-1">Tailored seat packages</div>
                     </div>
                     <div class="flex-1 flex flex-col">
-                        <ul class="space-y-4 mb-10 flex-1 text-sm text-slate-600">
-                            <li class="flex items-center gap-3">
-                                <span>✓</span> Curriculum & SOPs
+                        <ul class="space-y-4 mb-10 flex-1 text-sm text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-purple mt-0.5">✓</span>
+                                <span><strong>Everything in Founding Member</strong></span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span>✓</span> Proprietary Data
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-purple mt-0.5">✓</span>
+                                <span><strong>Multi-seat licenses</strong> for your team</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span>✓</span> War Room Community
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-purple mt-0.5">✓</span>
+                                <span><strong>White-label</strong> strategy decks</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-purple mt-0.5">✓</span>
+                                <span><strong>"Train the Trainer"</strong> workshops</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-neon-purple mt-0.5">✓</span>
+                                <span><strong>Dedicated private channel</strong></span>
                             </li>
                         </ul>
-                        <button
-                            class="block w-full py-4 bg-slate-900 text-slate-600 font-bold text-center cursor-not-allowed border border-slate-800"
-                            disabled>
-                            WAITLIST_ONLY
-                        </button>
+                        <a href="mailto:tom@tomcritchlow.com?subject=Agency%20Partner%20Inquiry"
+                            class="block w-full py-4 bg-transparent text-white font-bold text-center border border-slate-700 hover:border-neon-purple hover:text-neon-purple transition-all uppercase tracking-wider">
+                            Contact_Intelligence
+                        </a>
                     </div>
                 </div>
             </div>
