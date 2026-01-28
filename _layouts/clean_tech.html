@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Search Leaders</title>
+    <meta name="description"
+        content="{% if page.description %}{{ page.description }}{% else %}Navigating the shift from traditional SEO to AI-driven search. A continuous learning membership for senior professionals.{% endif %}">
+    {% include analytics.html %}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts: Instrument Serif (Headlines), Inter (Body), JetBrains Mono (Technical Data) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Instrument Serif"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        paper: '#fdfdfd',
+                        ink: {
+                            900: '#000000',
+                            700: '#333333',
+                            500: '#666666',
+                            300: '#cccccc',
+                            100: '#f0f0f0',
+                        },
+                        accent: {
+                            DEFAULT: '#ff3300', /* International Orange */
+                            dim: '#ff330020',
+                        },
+                        blueprint: {
+                            grid: '#e5e7eb', /* Light gray for grid */
+                            line: '#000000',
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-paper': 'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fdfdfd;
+            color: #1a1a1a;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+        }
+
+        /* Custom Utilities for the Aesthetic */
+        .technical-border {
+            border: 1px solid #e5e5e5;
+        }
+
+        .technical-border-t {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .technical-border-b {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .technical-border-dark {
+            border: 1px solid #000;
+        }
+
+        /* Serif Italic Accent */
+        .serif-italic {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-ink-900 selection:bg-accent selection:text-white">
+
+    <!-- Background Grid -->
+    <div class="fixed inset-0 bg-grid-paper grid-bg pointer-events-none z-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-paper/80 backdrop-blur-sm border-b border-ink-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-mono text-xs font-bold tracking-widest uppercase">AI Search Leaders</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <!-- <a href="/about" class="text-xs font-mono text-ink-500 hover:text-ink-900 uppercase tracking-widest">About</a> -->
+                <a href="/#pricing"
+                    class="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest border border-ink-900 px-4 py-2 hover:bg-ink-900 hover:text-white transition-colors">
+                    Join_Beta
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-16">
+        {{ content }}
+    </main>
+
+    <footer class="py-20 border-t border-ink-900 bg-paper relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-3 h-3 bg-accent rounded-full"></div>
+                        <span class="font-serif text-2xl">AI Search Leaders</span>
+                    </div>
+                    <p class="font-mono text-xs text-ink-500 max-w-sm">
+                        Building the intelligence unit for the post-search era.
+                        <br>
+                        System Version: 2.0.0
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-widest mb-4">Coordinates</h4>
+                    <p class="font-mono text-xs text-ink-500">
+                        San Francisco, CA<br>
+                        New York, NY
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-widest mb-4">Contact</h4>
+                    <a href="mailto:tom@tomcritchlow.com"
+                        class="font-mono text-xs text-ink-500 hover:text-accent underline">tom@tomcritchlow.com</a>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-ink-100 flex justify-between items-end">
+                <div class="font-mono text-[10px] text-ink-300 uppercase tracking-widest">
+                    © 2026 AI Search Leaders
+                </div>
+                <div class="font-mono text-[10px] text-ink-300 uppercase tracking-widest">
+                    Status: Online
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
