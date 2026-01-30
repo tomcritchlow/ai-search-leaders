@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect x="0" y="0" width="32" height="32" rx="4" fill="#ccff00"/>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="20" fill="#000000">_</text>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Icon Container: Dark Slate rounded square -->
+    <rect width="64" height="64" rx="16" fill="#0f172a"/>
+    
+    <!-- The Stack: Offset Velocity -->
+    <g>
+        <!-- Top Bar -->
+        <rect x="14" y="16" width="28" height="8" fill="white"/>
+        
+        <!-- Offset Middle Bar (Neon) -->
+        <rect x="22" y="28" width="28" height="8" fill="#72e882"/>
+        
+        <!-- Bottom Bar -->
+        <rect x="14" y="40" width="28" height="8" fill="white"/>
+    </g>
 </svg>
