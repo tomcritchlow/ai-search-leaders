@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Leaders | Datalily V13</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        horizon: {
+                            main: '#7ae477',    // Fresh Green
+                            depth: '#1e3934',   // Deep Teal
+                            pop: '#f48536',     // Orange
+                            canvas: '#f4f4f2',  // Warm Beige
+                            white: '#ffffff',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -10px rgba(30, 57, 52, 0.05)',
+                        'card': '0 10px 30px -5px rgba(30, 57, 52, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f4f2;
+            color: #1e3934;
+        }
+
+        /* Abstract Shape Gradients */
+        .shape-gradient-1 {
+            background: linear-gradient(135deg, #7ae477 0%, #1e3934 100%);
+        }
+
+        .shape-gradient-2 {
+            background: linear-gradient(135deg, #f48536 0%, #ffcd9e 100%);
+        }
+
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-delay-1 {
+            animation-delay: 2s;
+        }
+
+        .float-delay-2 {
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-horizon-main selection:text-horizon-depth">
+
+    <!-- Top Bar -->
+    <nav class="py-6 px-6 md:px-12 flex justify-between items-center relative z-50">
+        <!-- Minimal Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#7ae477" />
+                <path d="M2 17L12 22L22 17" stroke="#1e3934" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 12L12 17L22 12" stroke="#1e3934" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <span class="font-serif font-bold text-xl text-horizon-depth tracking-tight">Search Leaders</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div
+            class="hidden md:flex items-center gap-8 text-sm font-medium text-horizon-depth uppercase tracking-wider text-[11px]">
+            <a href="#manifesto" class="hover:text-horizon-pop transition-colors">Manifesto</a>
+            <a href="#solutions" class="hover:text-horizon-pop transition-colors">Solutions</a>
+            <a href="#assets" class="hover:text-horizon-pop transition-colors">Curriculum</a>
+            <a href="#pricing" class="hover:text-horizon-pop transition-colors">Pricing</a>
+        </div>
+
+        <!-- Button -->
+        <a href="#pricing"
+            class="bg-horizon-main text-horizon-depth px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-horizon-pop hover:text-white transition-colors">
+            Apply Now
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-16 pb-32 px-6 relative overflow-hidden">
+
+        <!-- Main Headline -->
+        <div class="text-center max-w-5xl mx-auto mb-16 relative z-10">
+            <div
+                class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-horizon-depth/5 border border-horizon-depth/10">
+                <span class="w-1.5 h-1.5 rounded-full bg-horizon-main animate-pulse"></span>
+                <span class="text-[10px] uppercase tracking-widest font-bold text-horizon-depth/70">System_Status:
+                    Online</span>
+            </div>
+
+            <h1 class="font-serif text-5xl md:text-7xl text-horizon-depth leading-[1.0] mb-8">
+                Become an <br>
+                <span class="italic text-horizon-main">AI Search Leader</span>
+            </h1>
+            <p class="text-horizon-depth/70 text-lg md:text-xl font-sans max-w-xl mx-auto leading-relaxed">
+                Join the exclusive community, become fluent in the future of search.
+                <span class="text-horizon-pop font-medium block mt-2">Don't get left behind.</span>
+            </p>
+        </div>
+
+        <!-- Floating Visuals Composition -->
+        <div class="max-w-6xl mx-auto relative h-[400px] md:h-[500px]">
+
+            <!-- Center Card (Large Abstract) -->
+            <div
+                class="absolute left-1/2 top-10 -translate-x-1/2 w-[300px] h-[350px] md:w-[400px] md:h-[450px] bg-white rounded-3xl shadow-card p-2 transform rotate-1 z-10 overflow-hidden">
+                <div
+                    class="w-full h-full rounded-2xl bg-[#fff9f2] relative overflow-hidden border border-horizon-depth/5">
+                    <!-- Circles -->
+                    <div
+                        class="absolute top-10 -left-10 w-40 h-40 bg-horizon-main rounded-full mix-blend-multiply opacity-60">
+                    </div>
+                    <div
+                        class="absolute bottom-20 -right-10 w-48 h-48 bg-horizon-pop rounded-full mix-blend-multiply opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#e0d8ff] rounded-full mix-blend-multiply opacity-60">
+                    </div>
+                    <!-- Grid Lines Overlay -->
+                    <div class="absolute inset-0 opacity-10"
+                        style="background-image: linear-gradient(#1e3934 1px, transparent 1px), linear-gradient(90deg, #1e3934 1px, transparent 1px); background-size: 20px 20px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Floater: "AI Overviews" -->
+            <div class="absolute left-[5%] md:left-[15%] top-[60px] z-20 float">
+                <div
+                    class="bg-horizon-depth text-white rounded-full px-6 py-3 font-mono text-xs font-bold uppercase shadow-lg transform -rotate-3 border-2 border-horizon-main">
+                    AI_Overviews_Active
+                </div>
+            </div>
+
+            <!-- Right Floater: "Volatility Index" -->
+            <div class="absolute right-[5%] md:right-[15%] bottom-[100px] z-20 float float-delay-1">
+                <div class="bg-white p-4 rounded-xl shadow-xl w-48 transform rotate-2 border border-horizon-depth/5">
+                    <div class="text-[10px] font-sans font-bold text-horizon-depth uppercase mb-2 flex justify-between">
+                        <span>Volatility</span>
+                        <span class="text-horizon-pop">High</span>
+                    </div>
+                    <!-- Mini Chart -->
+                    <div class="flex items-end gap-1 h-12">
+                        <div class="w-1/5 bg-horizon-depth/20 h-[40%] rounded-t-sm"></div>
+                        <div class="w-1/5 bg-horizon-depth/20 h-[60%] rounded-t-sm"></div>
+                        <div class="w-1/5 bg-horizon-depth/20 h-[50%] rounded-t-sm"></div>
+                        <div class="w-1/5 bg-horizon-depth/20 h-[70%] rounded-t-sm"></div>
+                        <div class="w-1/5 bg-horizon-pop h-[90%] rounded-t-sm"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Manifesto Section -->
+    <section id="manifesto" class="py-24 px-6 bg-white border-y border-horizon-depth/5">
+        <div class="max-w-3xl mx-auto text-center">
+
+            <div class="inline-block mb-8">
+                <span
+                    class="text-[10px] font-mono font-bold uppercase tracking-widest text-horizon-main bg-horizon-depth px-3 py-1 rounded-sm">
+                    System_Manifesto
+                </span>
+            </div>
+
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-horizon-depth mb-12 leading-tight">
+                The old playbook <br>
+                <span class="italic text-horizon-pop">is broken.</span>
+            </h2>
+
+            <div class="space-y-6 text-lg md:text-xl text-horizon-depth/70 leading-relaxed font-sans">
+                <p>
+                    The era of ten blue links is over.
+                    <strong class="text-horizon-depth">AI search is rewriting all the rules.</strong>
+                </p>
+                <p>
+                    If you're an SEO: your playbook is out of date. New skills, new data, new tools.
+                    You're preparing for a world where rankings don't exist.
+                </p>
+                <p>
+                    Here's the uncomfortable bit: <span class="text-horizon-pop font-medium">nobody has this
+                        nailed.</span>
+                    There are no frameworks. Everyone is flying blind while the terrain mutates under their feet.
+                </p>
+                <p class="pt-4 border-t border-horizon-depth/10 mt-8">
+                    In a world with no stable maps, your only real advantage is how fast you can learn.
+                    That's <strong class="text-horizon-depth">Search Leaders</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-24 px-6 relative bg-horizon-canvas">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="text-center mb-16">
+                <span class="text-xs font-mono font-bold uppercase text-horizon-pop tracking-widest">Methodology
+                    v2.0</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-horizon-depth mt-4">A Membership for the Future</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Card 1: Strategic Upskilling (Node A) -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition-all cursor-pointer group border border-transparent hover:border-horizon-main/30">
+                    <div
+                        class="w-12 h-12 mb-6 rounded-full bg-horizon-main/10 text-horizon-main flex items-center justify-center">
+                        <!-- Icon: Book/Learn -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4 text-horizon-depth">Strategic Upskilling</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed mb-8 min-h-[80px]">
+                        Continuous education modules on LLMO, GEO, and AI-driven workflows. Stop guessing, start
+                        optimizing.
+                    </p>
+                    <div class="space-y-3 pt-6 border-t border-horizon-depth/5">
+                        <div
+                            class="flex items-center gap-3 text-xs font-bold uppercase text-horizon-depth tracking-wide">
+                            <span class="text-horizon-main">→</span> Live Workshops
+                        </div>
+                        <div
+                            class="flex items-center gap-3 text-xs font-bold uppercase text-horizon-depth tracking-wide">
+                            <span class="text-horizon-main">→</span> Guest Lectures
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Bespoke Intelligence (Node B) -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition-all cursor-pointer group border border-transparent hover:border-horizon-main/30">
+                    <div
+                        class="w-12 h-12 mb-6 rounded-full bg-horizon-depth/5 text-horizon-depth flex items-center justify-center">
+                        <!-- Icon: Chart/Data -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4 text-horizon-depth">Bespoke Intelligence</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed mb-8 min-h-[80px]">
+                        Access to proprietary research and datasets monitoring AI Overviews volatility across vertical
+                        markets.
+                    </p>
+                    <div class="space-y-3 pt-6 border-t border-horizon-depth/5">
+                        <div
+                            class="flex items-center gap-3 text-xs font-bold uppercase text-horizon-depth tracking-wide">
+                            <span class="text-horizon-pop">→</span> Volatility Trackers
+                        </div>
+                        <div
+                            class="flex items-center gap-3 text-xs font-bold uppercase text-horizon-depth tracking-wide">
+                            <span class="text-horizon-pop">→</span> Measurement Playbooks
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: The Lab (Node C) -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition-all cursor-pointer group border border-transparent hover:border-horizon-main/30">
+                    <div
+                        class="w-12 h-12 mb-6 rounded-full bg-horizon-pop/10 text-horizon-pop flex items-center justify-center">
+                        <!-- Icon: Users/Network -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-4 text-horizon-depth">The Lab</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed mb-8 min-h-[80px]">
+                        A private, high-signal peer group. Safe space for in-house leads and agency owners. Absolutely
+                        no pitching.
+                    </p>
+                    <div class="space-y-3 pt-6 border-t border-horizon-depth/5">
+                        <div
+                            class="flex items-center gap-3 text-xs font-bold uppercase text-horizon-depth tracking-wide">
+                            <span class="text-horizon-main">→</span> Office Hours
+                        </div>
+                        <div
+                            class="flex items-center gap-3 text-xs font-bold uppercase text-horizon-depth tracking-wide">
+                            <span class="text-horizon-main">→</span> Peer Network
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Assets Grid Section -->
+    <section id="assets" class="py-24 px-6 bg-horizon-depth text-white relative overflow-hidden">
+        <!-- Decoration -->
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-horizon-main rounded-full blur-[120px] opacity-10 pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl">Membership Assets</h2>
+                <p class="text-white/60 mt-4">The toolkit for the AI era.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Asset 1 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[01]
+                    </div>
+                    <h4 class="font-bold mb-2">LLMO Curriculum</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Comprehensive video modules on Large Language Model
+                        Optimization.</p>
+                </div>
+                <!-- Asset 2 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[02]
+                    </div>
+                    <h4 class="font-bold mb-2">Volatility Datasets</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Weekly data drops tracking AI Overviews across 12
+                        verticals.</p>
+                </div>
+                <!-- Asset 3 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[03]
+                    </div>
+                    <h4 class="font-bold mb-2">Office Hours</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Live weekly calls with strategists to unblock
+                        specific challenges.</p>
+                </div>
+                <!-- Asset 4 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[04]
+                    </div>
+                    <h4 class="font-bold mb-2">Private Slack</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Direct access to 50+ senior in-house leads and
+                        agency owners.</p>
+                </div>
+                <!-- Asset 5 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[05]
+                    </div>
+                    <h4 class="font-bold mb-2">SOP Library</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Copy-paste workflows for AI content production and
+                        auditing.</p>
+                </div>
+                <!-- Asset 6 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[06]
+                    </div>
+                    <h4 class="font-bold mb-2">Prompt Vault</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Tested and version-controlled prompts for advanced
+                        analysis.</p>
+                </div>
+                <!-- Asset 7 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[07]
+                    </div>
+                    <h4 class="font-bold mb-2">Masterclasses</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Monthly deep-dives from guest experts in AI and
+                        Search.</p>
+                </div>
+                <!-- Asset 8 -->
+                <div
+                    class="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-horizon-main transition-colors group">
+                    <div class="text-[10px] font-mono text-horizon-main mb-3 opacity-60 group-hover:opacity-100">[08]
+                    </div>
+                    <h4 class="font-bold mb-2">Sales Materials</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">White-label slides to help agencies sell AI
+                        services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section id="founders" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl text-horizon-depth mb-2">System Architects</h2>
+                <p class="text-horizon-depth/60">The humans in the loop.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-4xl mx-auto">
+                <!-- Tom -->
+                <div class="text-center md:text-left">
+                    <div class="aspect-square bg-horizon-canvas rounded-xl mb-6 overflow-hidden relative group">
+                        <img src="images/tom_critchlow.png" alt="Tom Critchlow"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-horizon-depth">Tom Critchlow</h3>
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-horizon-main mb-4">Strategy Lead
+                    </div>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed">
+                        Strategic consultant for Google, NYT, and startups. Building the bridge between SEO and AI
+                        strategy.
+                    </p>
+                </div>
+
+                <!-- Jeremy -->
+                <div class="text-center md:text-left">
+                    <div class="aspect-square bg-horizon-canvas rounded-xl mb-6 overflow-hidden relative group">
+                        <img src="images/jeremy_cabral.png" alt="Jeremy Cabral"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-horizon-depth">Jeremy Cabral</h3>
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-horizon-pop mb-4">Operations Lead
+                    </div>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed">
+                        Founder of Finder.com (exit). Scaling operations and community infrastructure for the next
+                        generation of search.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-6 bg-horizon-canvas border-t border-horizon-depth/5">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="font-serif text-3xl md:text-4xl text-horizon-depth mb-6">Invest in your Advantage</h2>
+            <p class="text-horizon-depth/60 max-w-2xl mx-auto">
+                We are cheaper than one hour of a consultant's time, but give you a year of strategic advantage.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+            <!-- Founding Member -->
+            <div class="bg-horizon-depth text-white p-10 rounded-2xl shadow-premium relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 bg-horizon-main text-horizon-depth text-[10px] font-bold px-4 py-2 uppercase tracking-wider">
+                    Launch Offer
+                </div>
+
+                <h3 class="font-serif text-3xl mb-2">Founding Member</h3>
+                <p class="text-white/60 text-xs mb-8">For in-house leads & solo consultants.</p>
+
+                <div class="flex items-baseline gap-2 mb-2">
+                    <span class="text-5xl font-bold text-horizon-main tracking-tight">$250</span>
+                    <span class="text-sm text-white/50">/ first 6 months</span>
+                </div>
+                <div class="text-white/40 text-xs mb-8">then $100/month thereafter</div>
+
+                <ul class="space-y-4 mb-10 text-sm border-t border-white/10 pt-8">
+                    <li class="flex items-center gap-3"><span class="text-horizon-main">✓</span> LLMO Academy Access
+                    </li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-main">✓</span> Bi-Weekly Office Hours
+                    </li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-main">✓</span> Weekly Data Drops</li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-main">✓</span> Private Slack Community
+                    </li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-main">+</span> 1-on-1 Onboarding Call
+                    </li>
+                </ul>
+
+                <a href="mailto:tom@tomcritchlow.com?subject=Founding%20Member%20Application"
+                    class="block w-full py-4 bg-horizon-main text-horizon-depth font-bold uppercase tracking-wider rounded-lg hover:bg-white transition-colors text-center">
+                    Apply Now
+                </a>
+            </div>
+
+            <!-- Agency Partner -->
+            <div
+                class="bg-white p-10 rounded-2xl shadow-card flex flex-col border border-transparent hover:border-horizon-depth/20 transition-all">
+                <h3 class="font-serif text-3xl mb-2 text-horizon-depth">Agency Partner</h3>
+                <p class="text-horizon-depth/60 text-xs mb-8">For agencies wanting an AI edge.</p>
+
+                <div class="flex items-baseline gap-2 mb-2">
+                    <span class="text-5xl font-bold text-horizon-depth tracking-tight">Custom</span>
+                </div>
+                <div class="text-horizon-depth/40 text-xs mb-8">Tailored seat packages</div>
+
+                <ul class="space-y-4 mb-10 text-sm border-t border-horizon-depth/10 pt-8 text-horizon-depth/70 flex-1">
+                    <li class="flex items-center gap-3"><span class="text-horizon-pop">✓</span> Everything in Founding
+                        Member</li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-pop">✓</span> Multi-seat licenses</li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-pop">✓</span> White-label strategy
+                        decks</li>
+                    <li class="flex items-center gap-3"><span class="text-horizon-pop">✓</span> "Train the Trainer"
+                        workshops</li>
+                </ul>
+
+                <a href="mailto:tom@tomcritchlow.com?subject=Agency%20Partner%20Inquiry"
+                    class="block w-full py-4 bg-white border-2 border-horizon-depth text-horizon-depth font-bold uppercase tracking-wider rounded-lg hover:bg-horizon-depth hover:text-white transition-colors text-center">
+                    Contact Us
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 px-6 bg-white border-t border-horizon-depth/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-serif text-3xl font-bold text-horizon-depth mb-12 text-center">Frequently Asked</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="font-bold text-horizon-depth mb-2 flex gap-2"><span class="text-horizon-main">///</span>
+                        Is this for beginners?</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed">No. This is a high-level environment for
+                        senior SEOs and Heads of Growth. We assume you know SEO; we teach the AI delta.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-horizon-depth mb-2 flex gap-2"><span class="text-horizon-main">///</span>
+                        Can I expense this?</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed">Absolutely. Most members expense this as
+                        "Professional Development". We provide compliant invoices.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-horizon-depth mb-2 flex gap-2"><span class="text-horizon-main">///</span>
+                        What is the layout?</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed">Slack is the communication layer. The core
+                        value is the Proprietary Data, the Curriculum, and the SOP Library.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-horizon-depth mb-2 flex gap-2"><span class="text-horizon-main">///</span>
+                        Refund policy?</h3>
+                    <p class="text-sm text-horizon-depth/70 leading-relaxed">14-day "No Questions Asked". If the signal
+                        isn't right for you, we process the reversal immediately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-[#1e3934] to-[#112421] relative p-12 overflow-hidden text-white">
+        <div class="relative z-10 text-center py-16">
+            <h2 class="font-serif text-3xl md:text-5xl font-bold mb-8">Ready to see your content flourish?</h2>
+
+            <div class="mt-8 flex items-center justify-center gap-4 text-sm font-semibold opacity-60">
+                <span>© 2026 Search Leaders</span>
+                <span>/</span>
+                <span>V13 Horizon</span>
+            </div>
+
+            <!-- Large Logo Overlay -->
+            <div
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 opacity-5 whitespace-nowrap pointer-events-none">
+                <span class="font-serif text-[12rem] font-bold text-white leading-none">Leaders</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

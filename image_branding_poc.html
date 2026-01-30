@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Branding POC | V8 Identity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            neon: '#72e882',
+                            dark: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .pixel-pattern-grid {
+            background-image:
+                linear-gradient(45deg, #72e882 25%, transparent 25%),
+                linear-gradient(-45deg, #72e882 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #72e882 75%),
+                linear-gradient(-45deg, transparent 75%, #72e882 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        /* Branding Container */
+        .brand-container {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        /* V1: Corner Bit */
+        .corner-bit-grid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            width: 80px;
+            height: 80px;
+            z-index: 10;
+        }
+
+        .pixel {
+            background-color: #72e882;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Randomized opacity for that "data decay" look */
+        .pixel:nth-child(odd) {
+            opacity: 0.8;
+        }
+
+        .pixel:nth-child(3n) {
+            opacity: 0;
+        }
+
+        .pixel:nth-child(2n) {
+            opacity: 1;
+        }
+
+        .pixel:nth-child(5) {
+            opacity: 0;
+        }
+
+        /* Logo overlay small */
+        .brand-tag-small {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: bold;
+            color: #0f172a;
+            background: #72e882;
+            padding: 2px 4px;
+            z-index: 20;
+        }
+
+        /* V2: Data Rot / Glitch Edge */
+        .data-rot-edge {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rot-pixel {
+            flex: 1;
+            background: #72e882;
+            margin-bottom: 2px;
+        }
+
+        .rot-pixel:nth-child(even) {
+            width: 60%;
+            align-self: flex-end;
+        }
+
+        .rot-pixel:nth-child(3n) {
+            width: 30%;
+            align-self: flex-end;
+            opacity: 0.5;
+        }
+
+        .rot-pixel:nth-child(5n) {
+            visibility: hidden;
+        }
+
+        /* V3: The Frame */
+        .pixel-frame {
+            position: absolute;
+            inset: 10px;
+            border: 2px solid #72e882;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .frame-corner {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #72e882;
+        }
+
+        .frame-corner.tl {
+            top: -2px;
+            left: -2px;
+        }
+
+        .frame-corner.tr {
+            top: -2px;
+            right: -2px;
+        }
+
+        .frame-corner.bl {
+            bottom: -2px;
+            left: -2px;
+        }
+
+        .frame-corner.br {
+            bottom: -2px;
+            right: -2px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 p-12 min-h-screen">
+
+    <header class="mb-16 text-center">
+        <h1 class="text-4xl font-sans font-bold text-white mb-4">VISUAL_BRANDING_SYSTEM <span class="text-brand-neon">//
+                POC</span></h1>
+        <p class="font-mono text-slate-500">Watermarking strategies for the distributed web.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+
+        <!-- Variation 1: The Corner Bit -->
+        <div class="flex flex-col gap-4">
+            <h2 class="font-mono text-sm uppercase text-brand-neon">01_The_Corner_Bit</h2>
+            <div class="brand-container group bg-slate-800">
+                <img src="https://picsum.photos/400/500?random=1" alt="Sample"
+                    class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-500">
+
+                <!-- The Pixel Grid Overlay -->
+                <div class="corner-bit-grid">
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                    <div class="pixel"></div>
+                </div>
+
+                <!-- Logo Tag -->
+                <div class="brand-tag-small">
+                    AI_SL
+                </div>
+            </div>
+            <p class="text-xs font-mono text-slate-500">Inspired by QR codes and data fragments. Anchors the image.</p>
+        </div>
+
+        <!-- Variation 2: The Data Rot -->
+        <div class="flex flex-col gap-4">
+            <h2 class="font-mono text-sm uppercase text-brand-neon">02_Data_Decay</h2>
+            <div class="brand-container group bg-slate-800">
+                <img src="https://picsum.photos/400/500?random=2" alt="Sample"
+                    class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-500">
+
+                <!-- Edge Decay -->
+                <div class="data-rot-edge">
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                    <div class="rot-pixel"></div>
+                </div>
+
+                <div
+                    class="absolute top-4 right-4 bg-slate-900 border border-brand-neon px-2 py-1 text-xs font-mono font-bold text-white transform rotate-90 origin-top-right">
+                    SEARCH_LEADERS
+                </div>
+            </div>
+            <p class="text-xs font-mono text-slate-500">Organic "digital rot" eating the edge of the frame.</p>
+        </div>
+
+        <!-- Variation 3: The Frame -->
+        <div class="flex flex-col gap-4">
+            <h2 class="font-mono text-sm uppercase text-brand-neon">03_The_HUD</h2>
+            <div class="brand-container group bg-slate-800">
+                <img src="https://picsum.photos/400/500?random=3" alt="Sample"
+                    class="w-full h-auto opacity-75 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-500 mix-blend-luminosity">
+
+                <!-- Frame -->
+                <div class="pixel-frame">
+                    <div class="frame-corner tl"></div>
+                    <div class="frame-corner tr"></div>
+                    <div class="frame-corner bl"></div>
+                    <div class="frame-corner br"></div>
+                </div>
+
+                <!-- Overlay Text -->
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-center w-full">
+                    <div class="inline-block bg-slate-900/80 backdrop-blur px-3 py-1 border border-brand-neon">
+                        <span class="font-mono text-[10px] text-brand-neon uppercase tracking-widest">System_V8.0</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs font-mono text-slate-500">Contextual HUD overlay. Makes the image feel like a captured
+                artifact.</p>
+        </div>
+
+    </main>
+
+    <footer class="mt-20 text-center border-t border-slate-800 pt-8">
+        <p class="font-mono text-xs text-slate-600">/// END_OF_PROOF_OF_CONCEPT ///</p>
+    </footer>
+
+</body>
+
+</html>

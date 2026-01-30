@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Leaders | Horizon Identity (V13)</title>
+
+    <!-- Fonts: Playfair Display (Sophistication) + Plus Jakarta Sans (Modern Tech) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        horizon: {
+                            main: '#7ae477',    // Fresh Green
+                            depth: '#1e3934',   // Deep Teal
+                            pop: '#f48536',     // Orange
+                            canvas: '#f4f4f2',  // Warm Beige
+                            surface: '#ffffff', // White
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'mesh': 'radial-gradient(at 0% 0%, hsla(118,66%,69%,1) 0px, transparent 50%), radial-gradient(at 100% 0%, hsla(27,89%,58%,1) 0px, transparent 50%), radial-gradient(at 100% 100%, hsla(168,31%,17%,1) 0px, transparent 50%), radial-gradient(at 0% 100%, hsla(118,66%,69%,1) 0px, transparent 50%)',
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                        'premium': '0 20px 40px -10px rgba(30, 57, 52, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f4f2;
+            color: #1e3934;
+        }
+
+        /* Smooth Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #1e3934 0%, #2d574e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-accent {
+            background: linear-gradient(135deg, #f48536 0%, #d65d0a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Nav Link Hover Effect */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #f48536;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f4f4f2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d1cf;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1e3934;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-horizon-main selection:text-horizon-depth">
+
+    <!-- Ambient Background Mesh -->
+    <div class="fixed inset-0 z-0 opacity-10 pointer-events-none mix-blend-multiply" style="background-image: 
+            radial-gradient(circle at 15% 50%, #7ae477 0%, transparent 25%), 
+            radial-gradient(circle at 85% 30%, #f48536 0%, transparent 25%);">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-0 right-0 z-50 px-6">
+        <div
+            class="max-w-7xl mx-auto glass-panel rounded-full px-8 py-4 flex justify-between items-center shadow-glass">
+            <!-- Logo area -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-br from-horizon-main to-horizon-depth flex items-center justify-center text-white font-serif font-bold italic relative overflow-hidden">
+                    <span class="relative z-10">S</span>
+                    <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                </div>
+                <span class="font-serif font-bold text-lg text-horizon-depth tracking-tight">Search Leaders</span>
+            </a>
+
+            <!-- Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-horizon-depth/80">
+                <a href="#vision" class="nav-link hover:text-horizon-depth transition-colors">Vision</a>
+                <a href="#intel" class="nav-link hover:text-horizon-depth transition-colors">Intelligence</a>
+                <a href="#network" class="nav-link hover:text-horizon-depth transition-colors">The Network</a>
+            </div>
+
+            <!-- CTA -->
+            <a href="#apply"
+                class="hidden md:block bg-horizon-depth text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-horizon-pop transition-colors shadow-lg shadow-horizon-depth/20 transform hover:-translate-y-0.5 duration-300">
+                Request Access
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
+        <!-- Abstract Shapes -->
+        <div
+            class="absolute top-1/4 right-[-10%] w-[600px] h-[600px] bg-horizon-main/20 rounded-full blur-[100px] mix-blend-multiply">
+        </div>
+        <div
+            class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-horizon-pop/10 rounded-full blur-[80px] mix-blend-multiply">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Content -->
+            <div class="space-y-8">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-horizon-depth/5 border border-horizon-depth/10 reveal">
+                    <span class="w-2 h-2 rounded-full bg-horizon-pop animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-horizon-depth/70">Intelligence for the
+                        AI Era</span>
+                </div>
+
+                <h1
+                    class="font-serif text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-horizon-depth font-medium tracking-tight reveal reveal-delay-1">
+                    Navigate the <br>
+                    <span class="italic text-gradient-accent">Shift</span> in <br>
+                    Search.
+                </h1>
+
+                <p
+                    class="font-sans text-lg md:text-xl text-horizon-depth/70 max-w-lg leading-relaxed reveal reveal-delay-2">
+                    A premium intelligence network for leaders adapting to the post-search world.
+                    <span class="text-horizon-depth font-medium">Data-driven, private, and ahead of the curve.</span>
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 reveal reveal-delay-3">
+                    <a href="#apply"
+                        class="inline-flex justify-center items-center px-8 py-4 bg-horizon-depth text-white rounded-xl font-medium shadow-premium hover:bg-horizon-pop transition-all hover:scale-[1.02]">
+                        Apply for Membership
+                    </a>
+                    <a href="#methodology"
+                        class="inline-flex justify-center items-center px-8 py-4 bg-white text-horizon-depth border border-horizon-depth/10 rounded-xl font-medium hover:bg-horizon-canvas transition-colors">
+                        View Methodology
+                    </a>
+                </div>
+
+                <div
+                    class="pt-8 flex items-center gap-4 text-xs font-medium text-horizon-depth/50 reveal reveal-delay-3">
+                    <span>TRUSTED BY LEADERS AT</span>
+                    <div class="h-px bg-horizon-depth/10 flex-1"></div>
+                    <!-- Minimal Logos -->
+                    <span class="font-serif italic text-horizon-depth/40">Pinterest</span>
+                    <span class="font-serif italic text-horizon-depth/40">New York Times</span>
+                    <span class="font-serif italic text-horizon-depth/40">Shopify</span>
+                </div>
+            </div>
+
+            <!-- Visual / Card Stack -->
+            <div class="relative lg:h-[600px] flex items-center justify-center reveal reveal-delay-2">
+                <!-- Decorative Circle -->
+                <div class="absolute inset-0 border border-horizon-depth/5 rounded-full scale-90"></div>
+                <div class="absolute inset-0 border border-horizon-depth/5 rounded-full scale-75"></div>
+
+                <!-- Floating Glass Cards -->
+                <div class="relative w-full max-w-md aspect-[4/5]">
+                    <!-- Back Card -->
+                    <div
+                        class="absolute top-0 right-0 w-3/4 h-3/4 bg-gradient-to-br from-horizon-main to-horizon-depth rounded-3xl opacity-20 transform rotate-6 translate-x-4">
+                    </div>
+
+                    <!-- Middle Card -->
+                    <div
+                        class="absolute top-8 right-8 left-8 bottom-8 bg-white shadow-premium rounded-2xl transform rotate-3 z-10 overflow-hidden border border-horizon-depth/5">
+                        <div class="p-6 h-full flex flex-col">
+                            <div class="flex items-center justify-between mb-8">
+                                <div class="text-xs font-bold text-horizon-depth/40 uppercase">Volatility Index</div>
+                                <div class="text-horizon-pop">● Live</div>
+                            </div>
+                            <div class="space-y-3 flex-1">
+                                <!-- Fake Chart bars -->
+                                <div class="flex items-end gap-2 h-32 mb-6">
+                                    <div class="w-1/5 bg-horizon-depth/10 rounded-t-sm h-[40%]"></div>
+                                    <div class="w-1/5 bg-horizon-depth/10 rounded-t-sm h-[60%]"></div>
+                                    <div class="w-1/5 bg-horizon-depth/10 rounded-t-sm h-[30%]"></div>
+                                    <div class="w-1/5 bg-horizon-depth/10 rounded-t-sm h-[80%]"></div>
+                                    <div
+                                        class="w-1/5 bg-horizon-main rounded-t-sm h-[95%] shadow-lg shadow-horizon-main/30 relative">
+                                        <div
+                                            class="absolute -top-8 left-1/2 -translate-x-1/2 bg-horizon-depth text-white text-[10px] px-2 py-1 rounded">
+                                            +42%
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="font-serif text-2xl text-horizon-depth italic">"The algorithm isn't changing.
+                                    The user is."</h3>
+                                <p class="text-xs text-horizon-depth/60 leading-relaxed mt-2">
+                                    Our models predict a 40% shift in commercial queries to direct-answer formats by Q4.
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3 pt-6 border-t border-horizon-depth/5">
+                                <div class="w-8 h-8 rounded-full bg-gray-200"></div>
+                                <div class="text-xs">
+                                    <div class="font-bold text-horizon-depth">Tom Critchlow</div>
+                                    <div class="text-horizon-depth/50">Strategy Lead</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

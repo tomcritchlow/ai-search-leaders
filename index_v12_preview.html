@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home V8 (Grid System) | Search Leaders</title>
+    <meta name="description"
+        content="Navigating the shift from traditional SEO to AI-driven search. A continuous learning membership for senior professionals.">
+    <!-- Analytics Placeholder -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        // Palette based on V6: Neon Green + Slate
+                        brand: {
+                            neon: '#72e882', // Adjusted to match Proofmode-style green (more true green, less yellow)
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern': 'linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)',
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+        }
+
+        /* Dithering / Noise */
+        .bg-noise {
+            position: relative;
+        }
+
+        .bg-noise::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* Pixelation */
+        .pixelated {
+            image-rendering: pixelated;
+        }
+
+        /* Pixel Corners Clip Path */
+        .pixel-corners {
+            clip-path: polygon(4px 0, calc(100% - 4px) 0,
+                    100% 4px, 100% calc(100% - 4px),
+                    calc(100% - 4px) 100%, 4px 100%,
+                    0 calc(100% - 4px), 0 4px);
+        }
+
+        /* Dithered Gradient (CSS Approximation) */
+        .dither-gradient-bottom {
+            background: linear-gradient(to bottom, transparent 0%, rgba(114, 232, 130, 0.05) 100%);
+        }
+
+        /* Pixel Edges (Masks) */
+        .pixel-edge-top {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M0 20 L0 10 L2 10 L2 0 L4 0 L4 10 L6 10 L6 0 L8 0 L8 10 L10 10 L10 20 Z' fill='black'/%3E%3C/svg%3E");
+            mask-size: 40px 20px;
+            mask-repeat: repeat-x;
+            mask-position: top;
+        }
+
+        /* Brutalist Shadows */
+        .box-shadow-hard {
+            box-shadow: 4px 4px 0px 0px #0f172a;
+        }
+
+        .box-shadow-neon {
+            box-shadow: 4px 4px 0px 0px #72e882;
+        }
+
+        .box-shadow-hover:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #72e882;
+        }
+    </style>
+</head>
+
+<body class="font-body antialiased selection:bg-brand-neon selection:text-brand-dark">
+
+    <!-- Fixed Background Grid -->
+    <div class="fixed inset-0 bg-grid-pattern bg-grid z-0 opacity-40 pointer-events-none"></div>
+
+    <!-- Top Bar / Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-50/90 backdrop-blur-sm border-b border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 lg:px-6 h-14 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="/" class="flex items-center gap-2 group">
+                    <div class="h-8 w-auto">
+                        <svg viewBox="0 0 100 60" fill="none" class="h-full w-auto stroke-brand-neon stroke-[6px]"
+                            style="filter: drop-shadow(0 0 5px #72e882);">
+                            <path d="M0 30 L30 30 L40 10 L60 50 L70 30 L100 30" stroke-linecap="square"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <span
+                        class="font-sans font-bold text-lg tracking-tight uppercase group-hover:text-slate-600 transition-colors">AI
+                        Search Leaders</span>
+                </a>
+                <span
+                    class="hidden md:inline-flex px-2 py-0.5 border border-slate-200 bg-white text-[10px] font-mono uppercase text-slate-400 tracking-wider">
+                    sys_ver: 8.0_rc
+                </span>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="#about"
+                    class="hidden md:block font-mono text-xs font-bold uppercase tracking-widest hover:text-brand-neon hover:bg-slate-900 px-2 py-1 transition-colors">
+                    [ About ]
+                </a>
+                <a href="#assets"
+                    class="hidden md:block font-mono text-xs font-bold uppercase tracking-widest hover:text-brand-neon hover:bg-slate-900 px-2 py-1 transition-colors">
+                    [ Intelligence ]
+                </a>
+                <a href="#pricing"
+                    class="bg-slate-900 text-white font-mono text-xs uppercase px-4 py-2 hover:bg-brand-neon hover:text-slate-900 transition-colors border border-slate-900">
+                    Join_Now ->
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-14">
+
+        <!-- Hero Section -->
+        <header
+            class="min-h-[85vh] flex flex-col justify-between border-b border-slate-900 bg-slate-50 relative overflow-hidden bg-noise">
+
+            <!-- Dither Gradient Overlay -->
+            <div class="absolute inset-0 dither-gradient-bottom pointer-events-none z-0"></div>
+
+            <!-- Hero Content -->
+            <div class="flex-1 flex flex-col justify-center px-6 max-w-7xl mx-auto w-full pt-12 md:pt-0 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+
+                    <div class="lg:col-span-8 relative z-10">
+                        <!-- Label -->
+                        <div class="inline-flex items-center gap-2 mb-6 border-l-2 border-brand-neon pl-3">
+                            <span class="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">
+                                Network Status: <span class="text-slate-900">Online</span>
+                            </span>
+                        </div>
+
+                        <h1
+                            class="font-sans font-medium text-6xl md:text-8xl lg:text-9xl leading-[0.9] text-slate-900 tracking-tighter mb-8 bg-clip-text">
+                            BECOME AN<br>
+                            <span
+                                class="bg-brand-neon text-slate-900 px-2 inline-block transform -skew-x-6 pixel-corners">AI
+                                SEARCH LEADER</span>
+                        </h1>
+
+                        <p
+                            class="font-body text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10 border-l border-slate-300 pl-6">
+                            Join the exclusive community, become fluent in the future of search.
+                            <strong class="text-slate-900 block mt-2">Don't get left behind.</strong>
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#pricing"
+                                class="inline-block bg-slate-900 text-white font-mono text-sm uppercase tracking-wider px-8 py-4 border border-slate-900 box-shadow-neon hover:bg-white hover:text-slate-900 transition-all pixel-corners">
+                                INITIALIZE_APPLICATION
+                            </a>
+                            <a href="#methodology"
+                                class="inline-block bg-white text-slate-900 font-mono text-sm uppercase tracking-wider px-8 py-4 border border-slate-900 hover:bg-slate-100 transition-all pixel-corners">
+                                EXPLORE_THE_LAB
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual / Data Decoration -->
+                    <div class="lg:col-span-4 self-center lg:self-end lg:mb-12 w-full">
+                        <div class="bg-white border border-slate-900 p-4 box-shadow-hard pixel-corners relative">
+                            <!-- Pixel Art Decoration Corner -->
+                            <div class="absolute -top-1 -right-1 w-2 h-2 bg-brand-neon"></div>
+                            <div class="absolute -top-1 -right-2 w-1 h-1 bg-slate-900"></div>
+
+                            <div class="flex justify-between items-center border-b border-slate-200 pb-2 mb-4">
+                                <span class="font-mono text-[10px] uppercase text-slate-400">Live_Telemetry</span>
+                                <div class="flex gap-1">
+                                    <div class="w-2 h-2 bg-slate-200"></div>
+                                    <div class="w-2 h-2 bg-slate-200"></div>
+                                    <div class="w-2 h-2 rounded-full bg-brand-neon animate-pulse"></div>
+                                </div>
+                            </div>
+                            <!-- Mock Data Visualization -->
+                            <div class="space-y-3 font-mono text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Volatility</span>
+                                    <span class="text-brand-dark font-bold">HIGH [98.2%]</span>
+                                </div>
+                                <div class="h-2 w-full bg-slate-100 overflow-hidden relative">
+                                    <div class="h-full bg-slate-300 w-full absolute top-0 left-0"
+                                        style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, #fff 2px, #fff 4px);">
+                                    </div>
+                                    <div class="h-full bg-brand-dark w-[98%] relative z-10 mix-blend-multiply"></div>
+                                </div>
+
+                                <div class="flex justify-between pt-2">
+                                    <span class="text-slate-500">Node_Capacity</span>
+                                    <span class="text-brand-dark font-bold">412/500</span>
+                                </div>
+                                <div class="h-2 w-full bg-slate-100 overflow-hidden relative">
+                                    <div class="h-full bg-slate-300 w-full absolute top-0 left-0"
+                                        style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, #fff 2px, #fff 4px);">
+                                    </div>
+                                    <div class="h-full bg-brand-neon w-[82%] relative z-10"></div>
+                                </div>
+
+                                <div class="pt-4 mt-4 border-t border-slate-100 text-[10px] text-slate-400">
+                                    > CONNECTING_TO_SERP... OK<br>
+                                    > ANALYZING_AI_OVERVIEWS... OK<br>
+                                    > SYNCING_COMMUNITY... <span class="animate-blink">_</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marquee Footer of Hero -->
+            <div class="mt-12 md:mt-0 py-3 bg-brand-neon border-t border-slate-900 overflow-hidden relative">
+                <div
+                    class="whitespace-nowrap animate-marquee font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-slate-900 flex gap-8">
+                    <span>/// System_Alert: Shift to Zero-Click Search</span>
+                    <span>/// New_Skill_Required: LLM Optimization</span>
+                    <span>/// Community_Status: Accepting_Members</span>
+                    <span>/// Signal_Strength: Maximum</span>
+                    <span>/// System_Alert: Shift to Zero-Click Search</span>
+                    <span>/// New_Skill_Required: LLM Optimization</span>
+                    <span>/// Community_Status: Accepting_Members</span>
+                    <span>/// Signal_Strength: Maximum</span>
+                    <span>/// System_Alert: Shift to Zero-Click Search</span>
+                    <span>/// New_Skill_Required: LLM Optimization</span>
+                    <span>/// Community_Status: Accepting_Members</span>
+                    <span>/// Signal_Strength: Maximum</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Manifesto Grid (Green Section) -->
+        <section id="manifesto" class="relative bg-brand-neon text-slate-900 overflow-hidden py-24">
+
+            <!-- Technical Data Border Top -->
+            <div class="absolute top-0 left-0 right-0 h-6 w-full z-10 bg-slate-50"
+                style="-webkit-mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'4\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'0\' width=\'4\' height=\'8\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'8\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'4\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'0\' width=\'4\' height=\'8\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'8\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-repeat: repeat-x; -webkit-mask-repeat: repeat-x;">
+            </div>
+
+            <!-- Content -->
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 relative z-20">
+                <!-- Left: Title -->
+                <div class="p-8 md:p-16 border-b md:border-b-0 md:border-r border-slate-900/20">
+                    <span
+                        class="font-mono text-xs text-white bg-slate-900 px-2 py-1 mb-6 inline-block pixel-corners">001_SITREP</span>
+                    <h2 class="font-sans text-4xl py-6 md:text-5xl font-medium leading-tight mb-8">
+                        THE OLD PLAYBOOK<br>
+                        IS BROKEN.
+                    </h2>
+                    <div class="prose prose-lg text-slate-800 font-medium">
+                        <p class="mb-4">"If you’re an SEO, your playbook is out of date. You’re preparing for a world
+                            where rankings don’t exist."</p>
+                        <p>In a world with no stable maps, your only real advantage is how fast you can learn.</p>
+                    </div>
+                </div>
+                <!-- Right: Contrast -->
+                <div class="p-8 md:p-16 flex flex-col justify-center">
+                    <div class="space-y-8">
+                        <div class="group">
+                            <h3 class="font-mono text-xs uppercase text-slate-600 mb-2 font-bold opacity-70">Old_Metric
+                            </h3>
+                            <p
+                                class="font-sans text-lg text-slate-500 line-through decoration-slate-900 decoration-2 opacity-50">
+                                “How much traffic did we get?”</p>
+                        </div>
+                        <div class="group">
+                            <h3 class="font-mono text-xs uppercase text-slate-900 mb-2 font-bold">New_Metric // Target
+                            </h3>
+                            <p class="font-sans text-2xl text-slate-900 font-bold">“What does AI say when your customers
+                                talk to it?”</p>
+                            <p class="mt-2 text-slate-700 text-sm font-medium">Create 'Share of Model'. Optimize for the
+                                answer, not the link.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dither Texture Overlay (Subtle on Green) -->
+            <div class="absolute inset-0 pointer-events-none opacity-20"
+                style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); mix-blend-mode: multiply;">
+            </div>
+
+            <!-- Technical Data Border Bottom -->
+            <div class="absolute bottom-0 left-0 right-0 h-6 w-full z-10 bg-slate-900"
+                style="-webkit-mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'0\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'0\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'0\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'0\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-repeat: repeat-x; -webkit-mask-repeat: repeat-x;">
+            </div>
+
+        </section>
+
+        <!-- Methodology / Three Columns -->
+        <section class="border-b border-slate-900 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-6 py-20">
+                <div class="mb-12 flex items-baseline justify-between border-b border-slate-300 pb-4">
+                    <h2 class="font-sans text-4xl md:text-5xl font-bold tracking-tight text-slate-900">METHODOLOGY_V2
+                    </h2>
+                    <span class="font-mono text-xs text-slate-500 hidden sm:block">ARCHITECTING_THE_FUTURE</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div
+                        class="bg-white border border-slate-300 p-8 flex flex-col justify-between hover:border-slate-900 transition-colors group h-full">
+                        <div>
+                            <div
+                                class="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:bg-brand-neon group-hover:border-slate-900 transition-colors">
+                                A</div>
+                            <h3 class="font-sans text-2xl font-bold mb-4">Strategic Upskilling</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                                Continuous education modules on LLMO, GEO, and AI-driven workflows. Stop guessing and
+                                start engineering.
+                            </p>
+                        </div>
+                        <ul class="font-mono text-xs space-y-2 text-slate-500 border-t border-slate-100 pt-4">
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span> Live
+                                Workshops</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span> Guest
+                                Lectures</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span>
+                                Certification (Pending)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="bg-white border border-slate-300 p-8 flex flex-col justify-between hover:border-slate-900 transition-colors group h-full">
+                        <div>
+                            <div
+                                class="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:bg-brand-neon group-hover:border-slate-900 transition-colors">
+                                B</div>
+                            <h3 class="font-sans text-2xl font-bold mb-4">Bespoke Intelligence</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                                Access to proprietary research and datasets monitoring AI Overviews volatility. See the
+                                signals others miss.
+                            </p>
+                        </div>
+                        <ul class="font-mono text-xs space-y-2 text-slate-500 border-t border-slate-100 pt-4">
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span> Quarterly
+                                Reports</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span>
+                                Measurement Playbooks</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span>
+                                Volatility Trackers</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="bg-white border border-slate-300 p-8 flex flex-col justify-between hover:border-slate-900 transition-colors group h-full">
+                        <div>
+                            <div
+                                class="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:bg-brand-neon group-hover:border-slate-900 transition-colors">
+                                C</div>
+                            <h3 class="font-sans text-2xl font-bold mb-4">The Lab / Network</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                                A private, high-signal peer group. A safe space for in-house leads and agency owners to
+                                compare notes.
+                            </p>
+                        </div>
+                        <ul class="font-mono text-xs space-y-2 text-slate-500 border-t border-slate-100 pt-4">
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span> Zero
+                                Pitching</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span> Office
+                                Hours</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-neon text-lg">›</span> Peer
+                                Network</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inventory / Assets -->
+        <section id="assets" class="py-20 border-b border-slate-900 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="bg-slate-900 text-white font-mono text-xs px-2 py-1 uppercase">Inventory</div>
+                    <h2 class="font-sans text-3xl font-bold">Membership Assets</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-slate-200">
+                    <!-- Asset Items Loop -->
+                    <!-- Item 1 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">01</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">The LLMO Curriculum</h4>
+                        <p class="text-sm text-slate-500 font-light">Comprehensive video modules on Large Language Model
+                            Optimization.</p>
+                    </div>
+                    <!-- Item 2 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">02</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">Volatility Datasets</h4>
+                        <p class="text-sm text-slate-500 font-light">Weekly data drops tracking AI Overviews across 12
+                            verticals.</p>
+                    </div>
+                    <!-- Item 3 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">03</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">Bi-Weekly Strategy</h4>
+                        <p class="text-sm text-slate-500 font-light">Live "Office Hours" with Tom & Jeremy to
+                            unblock challenges.</p>
+                    </div>
+                    <!-- Item 4 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">04</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">Private Slack</h4>
+                        <p class="text-sm text-slate-500 font-light">Direct access to 50+ senior in-house leads and
+                            agency owners.</p>
+                    </div>
+                    <!-- Item 5 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">05</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">SOP Library</h4>
+                        <p class="text-sm text-slate-500 font-light">Copy-paste workflows for AI content production and
+                            auditing.</p>
+                    </div>
+                    <!-- Item 6 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">06</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">Prompt Vault</h4>
+                        <p class="text-sm text-slate-500 font-light">Tested and version-controlled prompts for analysis.
+                        </p>
+                    </div>
+                    <!-- Item 7 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">07</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">Masterclasses</h4>
+                        <p class="text-sm text-slate-500 font-light">Monthly deep-dives from guest experts in AI and
+                            Search.</p>
+                    </div>
+                    <!-- Item 8 -->
+                    <div
+                        class="group relative p-6 border border-slate-200 -ml-px -mt-px hover:z-10 hover:border-slate-900 hover:bg-slate-50 transition-all">
+                        <span class="font-mono text-xs text-slate-300 group-hover:text-brand-dark mb-2 block">08</span>
+                        <h4 class="font-sans font-bold text-lg mb-2">Agency Sales Deck</h4>
+                        <p class="text-sm text-slate-500 font-light">White-label slides to help you sell AI services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hall Partnership -->
+        <section class="py-24 border-b border-slate-900 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Hall Partnership -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24 border-b border-slate-300 pb-24">
+                    <div>
+                        <span
+                            class="text-brand-neon font-mono text-xs uppercase tracking-widest bg-slate-900 px-2 py-1 mb-6 inline-block pixel-corners">
+                            // Bundle_Active
+                        </span>
+                        <h2 class="font-sans text-4xl font-bold text-slate-900 mb-6">
+                            THE LAB REQUIRES DATA.
+                        </h2>
+                        <p class="text-slate-600 text-lg mb-8 leading-relaxed font-medium">
+                            You can't learn inference optimization without getting your hands dirty. We believe everyone
+                            needs enterprise-grade data monitoring to compete.
+                        </p>
+                        <p class="text-slate-500 mb-8 leading-relaxed">
+                            That's why every membership includes bundled access to <strong
+                                class="text-slate-900">Hall</strong>
+                            (usehall.com) — the premier prompt monitoring and observability platform.
+                        </p>
+                        <div class="flex items-center gap-4 text-xs font-mono text-slate-900 font-bold">
+                            <span class="bg-brand-neon px-2 py-1">[ STATUS: INTEGRATED ]</span>
+                            <span class="bg-white border border-slate-900 px-2 py-1">[ VALUE: INCLUDED ]</span>
+                        </div>
+                    </div>
+                    <!-- Visual / Terminal effect -->
+                    <div
+                        class="bg-slate-900 border border-slate-900 p-6 shadow-[8px_8px_0px_0px_#cbd5e1] font-mono text-xs pixel-corners">
+                        <div class="flex items-center gap-2 mb-4 border-b border-slate-800 pb-4">
+                            <div class="w-3 h-3 bg-red-500 pixel-corners"></div>
+                            <div class="w-3 h-3 bg-yellow-500 pixel-corners"></div>
+                            <div class="w-3 h-3 bg-green-500 pixel-corners"></div>
+                            <span class="text-slate-500 ml-2">hall_monitor.sh</span>
+                        </div>
+                        <div class="space-y-2 text-slate-400">
+                            <div>> initiating_sequence...</div>
+                            <div>> connecting_to_hall_api... <span class="text-brand-neon">SUCCESS</span></div>
+                            <div>> monitoring_prompts... <span class="text-white">ACTIVE</span></div>
+                            <div class="opacity-50">> fetching_volatility_index...</div>
+                            <div class="opacity-30">> analyzing_response_quality...</div>
+                            <br>
+                            <div class="text-white">
+                                <span class="text-brand-neon">ALERT:</span> Shift in answer sentiment detected.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner Discounts -->
+                <div class="text-center mb-12">
+                    <h2 class="font-sans text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+                        MEMBERSHIP PAYS FOR ITSELF
+                    </h2>
+                    <p class="text-slate-500 text-sm font-mono">Exclusive negotiation with key infrastructure providers.
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <!-- AirOps -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans">AirOps</div>
+                    </div>
+                    <!-- Replit -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans">Replit</div>
+                    </div>
+                    <!-- Notion -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans">Notion</div>
+                    </div>
+                    <!-- Ahrefs -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans">Ahrefs</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What to Expect Section -->
+        <section id="what-to-expect" class="py-24 relative border-b border-slate-900 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-16 items-start">
+                    <div class="md:w-1/3 sticky top-32">
+                        <span
+                            class="font-mono text-xs text-brand-neon bg-slate-900 px-3 py-1 uppercase tracking-widest pixel-corners inline-block">Onboarding_Protocol</span>
+                        <h2 class="font-sans text-4xl md:text-5xl font-bold text-slate-900 mt-6 mb-6">
+                            WHAT_TO_EXPECT
+                        </h2>
+                        <p class="text-lg text-slate-600 leading-relaxed font-body border-l-2 border-slate-200 pl-4">
+                            We don't just dump you in a Slack channel. We have a structured onboarding process to ensure
+                            you get value from Day 1.
+                        </p>
+                    </div>
+
+                    <div class="md:w-2/3 space-y-12">
+                        <!-- Step 1 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 bg-slate-900 text-brand-neon flex items-center justify-center font-mono text-sm font-bold z-10 box-shadow-neon border border-slate-900 pixel-corners">
+                                    01</div>
+                                <div
+                                    class="w-px h-full bg-slate-200 group-last:hidden border-l-2 border-dotted border-slate-300 my-4">
+                                </div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2 font-sans">Immediate Access</h3>
+                                <p class="text-slate-500 mb-4 text-sm leading-relaxed max-w-lg">
+                                    You'll get an invite to the private Slack and the Learning Portal. Introduce
+                                    yourself in <span
+                                        class="font-mono text-xs text-slate-900 bg-slate-100 px-2 py-0.5 border border-slate-300">#introductions</span>
+                                    and get your first "High Signal" welcome pack.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 bg-white border border-slate-900 text-slate-900 flex items-center justify-center font-mono text-sm font-bold z-10 hover:bg-brand-neon transition-colors pixel-corners">
+                                    02</div>
+                                <div
+                                    class="w-px h-full bg-slate-200 group-last:hidden border-l-2 border-dotted border-slate-300 my-4">
+                                </div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2 font-sans">The "State of AI Search"
+                                    Audit</h3>
+                                <p class="text-slate-500 mb-4 text-sm leading-relaxed max-w-lg">
+                                    In your first week, you'll receive our proprietary audit template. Run it on your
+                                    brand (or your client's) to establish a baseline for AI visibility.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 bg-white border border-slate-900 text-slate-900 flex items-center justify-center font-mono text-sm font-bold z-10 hover:bg-brand-neon transition-colors pixel-corners">
+                                    03</div>
+                                <div
+                                    class="w-px h-full bg-slate-200 group-last:hidden border-l-2 border-dotted border-slate-300 my-4">
+                                </div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2 font-sans">Founder Onboarding Call</h3>
+                                <p class="text-slate-500 mb-4 text-sm leading-relaxed max-w-lg">
+                                    Join a small-group call with Tom & Jeremy. We'll review your audit results and help
+                                    you prioritize your roadmap for the next 90 days.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 bg-white border border-slate-900 text-slate-900 flex items-center justify-center font-mono text-sm font-bold z-10 hover:bg-brand-neon transition-colors pixel-corners">
+                                    04</div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2 font-sans">First Lab Session</h3>
+                                <p class="text-slate-500 mb-4 text-sm leading-relaxed max-w-lg">
+                                    Attend your first bi-weekly strategy call. Bring a specific challenge, get feedback
+                                    from the room. No recording, Chatham House Rules.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Section -->
+        <section id="founders" class="py-24 relative border-b border-slate-900 bg-brand-neon">
+            <!-- Technical Data Border Top -->
+            <div class="absolute top-0 left-0 right-0 h-6 w-full z-10 bg-white"
+                style="-webkit-mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'4\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'0\' width=\'4\' height=\'8\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'8\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'4\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'0\' width=\'4\' height=\'8\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'8\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-repeat: repeat-x; -webkit-mask-repeat: repeat-x;">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 pt-12">
+                <div class="text-center mb-16">
+                    <h2 class="font-sans text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+                        SYSTEM_ARCHITECTS
+                    </h2>
+                    <p class="font-mono text-slate-800 font-bold tracking-widest uppercase">The humans in the loop.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                    <!-- Tom -->
+                    <div class="group">
+                        <div class="relative mb-6">
+                            <div
+                                class="aspect-square bg-slate-900 border-2 border-slate-900 p-2 pixel-corners relative">
+                                <div class="bg-gray-200 w-full h-full relative overflow-hidden">
+                                    <img src="images/tom_critchlow.png" alt="Tom Critchlow"
+                                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-slate-900"></div>
+                                <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-white"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2 font-sans">Tom Critchlow</h3>
+                        <div
+                            class="text-slate-900 text-xs font-mono mb-4 uppercase tracking-widest bg-white inline-block px-2 py-1 border border-slate-900">
+                            Strategy_Lead
+                        </div>
+                        <p class="text-slate-800 text-sm leading-relaxed font-medium">
+                            Strategic consultant for Google, NYT, and startups. Building the bridge between SEO and
+                            AI strategy.
+                        </p>
+                    </div>
+
+                    <!-- Jeremy -->
+                    <div class="group">
+                        <div class="relative mb-6">
+                            <div
+                                class="aspect-square bg-slate-900 border-2 border-slate-900 p-2 pixel-corners relative">
+                                <div class="bg-gray-200 w-full h-full relative overflow-hidden">
+                                    <img src="images/jeremy_cabral.png" alt="Jeremy Cabral"
+                                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-slate-900"></div>
+                                <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-white"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2 font-sans">Jeremy Cabral</h3>
+                        <div
+                            class="text-slate-900 text-xs font-mono mb-4 uppercase tracking-widest bg-white inline-block px-2 py-1 border border-slate-900">
+                            Operations_Lead
+                        </div>
+                        <p class="text-slate-800 text-sm leading-relaxed font-medium">
+                            Founder of Finder.com (exit). Scaling operations and community infrastructure for the
+                            next generation of search.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Data Border Bottom -->
+            <div class="absolute bottom-0 left-0 right-0 h-6 w-full z-10 bg-slate-900"
+                style="-webkit-mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'0\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'0\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-image: url('data:image/svg+xml;utf8,<svg width=\'40\' height=\'24\' viewBox=\'0 0 40 24\' xmlns=\'http://www.w3.org/2000/svg\'><rect x=\'0\' y=\'0\' width=\'4\' height=\'24\'/><rect x=\'8\' y=\'0\' width=\'4\' height=\'20\'/><rect x=\'16\' y=\'16\' width=\'4\' height=\'8\'/><rect x=\'24\' y=\'0\' width=\'4\' height=\'16\'/><rect x=\'32\' y=\'0\' width=\'4\' height=\'24\'/></svg>'); mask-repeat: repeat-x; -webkit-mask-repeat: repeat-x;">
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="py-24 bg-slate-900 text-white relative overflow-hidden bg-noise">
+            <!-- Top gradient line -->
+            <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-neon to-transparent opacity-50">
+            </div>
+            <!-- Bottom Dither -->
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent opacity-80"
+                style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 4px 4px;">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div>
+                        <span class="font-mono text-xs text-brand-neon uppercase tracking-widest mb-4 block">///
+                            Investment_Protocol</span>
+                        <h2 class="font-sans text-5xl font-bold mb-6">Membership<br>Options.</h2>
+                        <p class="font-body text-slate-400 text-lg max-w-md leading-relaxed">
+                            We are cheaper than one hour of a consultant's time, but give you a year of strategic
+                            advantage.
+                        </p>
+                        <div
+                            class="mt-8 p-4 bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-block rounded-sm pixel-corners">
+                            * Includes full access to Hall (usehall.com) tools.
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-slate-50 text-slate-900 p-8 border border-white box-shadow-neon relative transform hover:-translate-y-1 transition-transform duration-300 pixel-corners">
+                            <div
+                                class="absolute top-0 right-0 bg-brand-neon text-slate-900 font-mono text-[10px] uppercase font-bold px-2 py-1 pixel-corners">
+                                Launch_Offer_Active</div>
+
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="font-sans text-2xl font-bold">Founding Member</h3>
+                                    <p class="font-mono text-xs text-slate-500 mt-1">For in-house leads & solo
+                                        consultants</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-3xl font-bold tracking-tighter">$250</div>
+                                    <div class="text-[10px] font-mono text-slate-500">/ first 6 months</div>
+                                    <div class="text-[9px] font-mono text-slate-400 mt-1">then $100/mo</div>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2 mb-8 font-mono text-xs">
+                                <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span>
+                                    LLMO Academy Access (Video Modules)</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span>
+                                    Bi-Weekly Strategy "Office Hours"</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span>
+                                    Weekly Data Drops (Volatility Tracking)</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span>
+                                    Prompt Vault (Classified Library)</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span>
+                                    Private Slack (Strictly No Sales)</li>
+                                <div class="pt-2 mt-2 border-t border-slate-200 text-brand-dark font-bold">
+                                    + BONUS: 1-on-1 Onboarding Call
+                                </div>
+                            </ul>
+
+                            <a href="mailto:tom@tomcritchlow.com?subject=Founding%20Member%20Application"
+                                class="block w-full py-3 bg-slate-900 text-white font-mono text-xs font-bold text-center uppercase tracking-widest hover:bg-brand-neon hover:text-slate-900 transition-colors pixel-corners">BECOME_FOUNDING_MEMBER</a>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="border border-slate-700 p-8 hover:border-slate-500 transition-colors bg-slate-950/50 pixel-corners group">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3
+                                        class="font-sans text-2xl font-bold text-white group-hover:text-brand-neon transition-colors">
+                                        Agency Partner</h3>
+                                    <p class="font-mono text-xs text-slate-500 mt-1">For agencies wanting an AI edge</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-3xl font-bold tracking-tighter text-white">Custom</div>
+                                    <div class="text-[10px] font-mono text-slate-500">Tailored</div>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2 mb-8 font-mono text-xs text-slate-400">
+                                <li class="flex items-center gap-2"><span class="text-brand-neon font-bold">✓</span>
+                                    Everything in Founding Member</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-neon font-bold">✓</span>
+                                    Multi-seat licenses for your team</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-neon font-bold">✓</span>
+                                    White-label strategy decks</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-neon font-bold">✓</span>
+                                    "Train the Trainer" workshops</li>
+                                <li class="flex items-center gap-2"><span class="text-brand-neon font-bold">✓</span>
+                                    Dedicated private channel</li>
+                            </ul>
+
+                            <a href="mailto:tom@tomcritchlow.com?subject=Agency%20Partner"
+                                class="block w-full py-3 border border-slate-600 text-white font-mono text-xs font-bold text-center uppercase tracking-widest hover:bg-white hover:text-slate-900 transition-colors pixel-corners">CONTACT_INTELLIGENCE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-20 border-t border-b border-slate-900 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <h3 class="font-sans text-2xl font-bold text-slate-900">FAQ</h3>
+                </div>
+                <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-10">
+                    <div>
+                        <h4 class="font-sans font-bold text-sm mb-2 text-slate-900">Is this for beginners?</h4>
+                        <p class="font-mono text-xs text-slate-500 leading-relaxed">No. This is a high-level environment
+                            for senior SEOs, Heads of Growth, and Agency Owners. We
+                            assume you strictly know SEO; we teach you the AI delta.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-sans font-bold text-sm mb-2 text-slate-900">Time commitment?</h4>
+                        <p class="font-mono text-xs text-slate-500 leading-relaxed">We optimize for "High Signal, Low
+                            Latency". You can get value in 1 hour/week via the data drops and office hours. The
+                            curriculum is self-paced.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-sans font-bold text-sm mb-2 text-slate-900">Can I expense this?</h4>
+                        <p class="font-mono text-xs text-slate-500 leading-relaxed">Absolutely. Most members expense
+                            this as "Professional Development" or "Training". We provide compliant invoices for
+                            reimbursement.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-sans font-bold text-sm mb-2 text-slate-900">Refund policy?</h4>
+                        <p class="font-mono text-xs text-slate-500 leading-relaxed">We maintain a 14-day "No Questions
+                            Asked" refund protocol. If the signal isn't right for you, we process the reversal
+                            immediately.</p>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <h4 class="font-sans font-bold text-sm mb-2 text-slate-900">Is it just a Slack channel?</h4>
+                        <p class="font-mono text-xs text-slate-500 leading-relaxed">
+                            Negative. Slack is the communication layer. The core value is the <strong
+                                class="text-slate-900">Proprietary
+                                Data</strong> (volatility tracking), the <strong class="text-slate-900">LLMO
+                                Curriculum</strong> (video
+                            modules), and the <strong class="text-slate-900">SOP Library</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 text-xs font-mono relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(#72e882 1px, transparent 1px); background-size: 8px 8px;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-end gap-6 relative z-10">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="h-6 w-auto">
+                        <svg viewBox="0 0 100 60" fill="none" class="h-full w-auto stroke-brand-neon stroke-[6px]"
+                            style="filter: drop-shadow(0 0 5px #72e882);">
+                            <path d="M0 30 L30 30 L40 10 L60 50 L70 30 L100 30" stroke-linecap="square"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <span class="text-white font-sans font-bold uppercase tracking-wider">AI Search Leaders</span>
+                </div>
+                <p class="max-w-xs leading-relaxed text-slate-500">
+                    Building the intelligence unit for the post-search era.<br>
+                    San Francisco / New York
+                </p>
+            </div>
+
+            <div class="flex gap-8">
+                <div>
+                    <span class="block text-slate-600 mb-2 uppercase">Contact</span>
+                    <a href="mailto:tom@tomcritchlow.com" class="hover:text-brand-neon">tom@tomcritchlow.com</a>
+                </div>
+                <div>
+                    <span class="block text-slate-600 mb-2 uppercase">System</span>
+                    <span class="text-brand-neon">Online</span>
+                </div>
+                <div>
+                    <span class="block text-slate-600 mb-2 uppercase">Copyright</span>
+                    <span>© 2026</span>
+                </div>
+            </div>
+    </footer>
+
+</body>
+
+</html>
