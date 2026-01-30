@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Search Leaders | Executive Intelligence</title>
+    <meta name="description"
+        content="Navigating the shift from traditional SEO to AI-driven search. A continuous learning membership for senior professionals.">
+    <!-- Analytics Placeholder -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            neon: '#72e882',
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern': 'linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)',
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+        }
+
+        /* Dithering / Noise - Fixed to be grayscale and subtle */
+        .bg-noise {
+            position: relative;
+        }
+
+        .bg-noise::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.15;
+            /* Much lower opacity */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* Pixelation */
+        .pixelated {
+            image-rendering: pixelated;
+        }
+
+        /* Pixel Corners Clip Path */
+        .pixel-corners {
+            clip-path: polygon(4px 0, calc(100% - 4px) 0,
+                    100% 4px, 100% calc(100% - 4px),
+                    calc(100% - 4px) 100%, 4px 100%,
+                    0 calc(100% - 4px), 0 4px);
+        }
+
+        /* Dithered Gradient (CSS Approximation) */
+        .dither-gradient-bottom {
+            background: linear-gradient(to bottom, transparent 0%, rgba(114, 232, 130, 0.05) 100%);
+        }
+
+        /* Ruler Pattern for Borders */
+        .bg-ruler {
+            background-image: linear-gradient(90deg, currentColor 1px, transparent 1px);
+            background-size: 8px 100%;
+        }
+
+        /* Brutalist Shadows */
+        .box-shadow-hard {
+            box-shadow: 4px 4px 0px 0px #0f172a;
+        }
+
+        .box-shadow-neon {
+            box-shadow: 4px 4px 0px 0px #72e882;
+        }
+
+        .box-shadow-hover:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #72e882;
+        }
+    </style>
+</head>
+
+<body class="font-body antialiased selection:bg-brand-neon selection:text-brand-dark">
+
+    <!-- Fixed Background Grid -->
+    <div class="fixed inset-0 bg-grid-pattern bg-grid z-0 opacity-40 pointer-events-none"></div>
+
+    <!-- Top Bar / Navigation -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-slate-50/90 backdrop-blur-sm border-b border-slate-900 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="/" class="flex items-center gap-3 group">
+                    <div class="w-5 h-5 bg-brand-neon border border-slate-900"></div>
+                    <span
+                        class="font-sans font-bold text-xl tracking-tight uppercase group-hover:text-slate-600 transition-colors">AI
+                        Search Leaders</span>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <a href="#about"
+                    class="hidden md:block font-mono text-xs font-bold uppercase tracking-widest hover:text-brand-neon hover:bg-slate-900 px-3 py-1 transition-colors">
+                    [ About ]
+                </a>
+                <a href="#assets"
+                    class="hidden md:block font-mono text-xs font-bold uppercase tracking-widest hover:text-brand-neon hover:bg-slate-900 px-3 py-1 transition-colors">
+                    [ Intelligence ]
+                </a>
+                <a href="#pricing"
+                    class="bg-slate-900 text-white font-mono text-xs uppercase px-6 py-3 hover:bg-brand-neon hover:text-slate-900 transition-colors border border-slate-900">
+                    Join_Now ->
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-20">
+
+        <!-- Hero Section -->
+        <header
+            class="min-h-[85vh] flex flex-col justify-between border-b border-slate-900 bg-slate-50 relative overflow-hidden bg-noise">
+
+            <!-- Dither Gradient Overlay -->
+            <div class="absolute inset-0 dither-gradient-bottom pointer-events-none z-0"></div>
+
+            <!-- Hero Content -->
+            <div
+                class="flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full pt-16 md:pt-0 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-end">
+
+                    <div class="lg:col-span-8 relative z-10">
+                        <h1
+                            class="font-sans font-medium text-6xl md:text-8xl lg:text-7xl leading-[0.9] text-slate-900 tracking-tighter mb-8 bg-clip-text">
+                            BECOME AN<br>
+                            <span
+                                class="bg-brand-neon text-slate-900 px-2 inline-block transform -skew-x-6 pixel-corners">AI
+                                SEARCH LEADER</span>
+                        </h1>
+
+                        <p
+                            class="font-body text-xl md:text-2xl text-slate-600 max-w-3xl leading-relaxed mb-12 border-l border-slate-300 pl-8">
+                            Join the exclusive community, become fluent in the future of search.
+                            <strong class="text-slate-900 block mt-2">Don't get left behind.</strong>
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <a href="#pricing"
+                                class="inline-block bg-slate-900 text-white font-mono text-sm uppercase tracking-wider px-10 py-5 border border-slate-900 box-shadow-neon hover:bg-white hover:text-slate-900 transition-all pixel-corners">
+                                INITIALIZE_APPLICATION
+                            </a>
+                            <a href="#methodology"
+                                class="inline-block bg-white text-slate-900 font-mono text-sm uppercase tracking-wider px-10 py-5 border border-slate-900 hover:bg-slate-100 transition-all pixel-corners">
+                                EXPLORE_THE_LAB
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Marquee Footer of Hero -->
+            <div class="mt-16 md:mt-0 py-4 bg-brand-neon border-t border-slate-900 overflow-hidden relative">
+                <div
+                    class="whitespace-nowrap animate-marquee font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-slate-900 flex gap-12">
+                    <span>/// System_Alert: Shift to Zero-Click Search</span>
+                    <span>/// New_Skill_Required: LLM Optimization</span>
+                    <span>/// Community_Status: Accepting_Members</span>
+                    <span>/// Signal_Strength: Maximum</span>
+                    <span>/// System_Alert: Shift to Zero-Click Search</span>
+                    <span>/// New_Skill_Required: LLM Optimization</span>
+                    <span>/// Community_Status: Accepting_Members</span>
+                    <span>/// Signal_Strength: Maximum</span>
+                    <span>/// System_Alert: Shift to Zero-Click Search</span>
+                    <span>/// New_Skill_Required: LLM Optimization</span>
+                    <span>/// Community_Status: Accepting_Members</span>
+                    <span>/// Signal_Strength: Maximum</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Manifesto Grid (Green Section) -->
+        <section id="manifesto" class="relative bg-brand-neon text-slate-900 overflow-hidden py-24 md:py-32">
+
+            <!-- Technical Data Border Top (Ruler Style) -->
+            <div
+                class="absolute top-0 left-0 right-0 h-4 w-full z-10 bg-ruler opacity-20 text-slate-900 border-b border-slate-900/10">
+            </div>
+
+            <!-- Content -->
+            <div class="max-w-4xl mx-auto px-6 relative z-20">
+
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <span
+                        class="font-mono text-xs text-white bg-slate-900 px-3 py-1 mb-8 inline-block pixel-corners">001_SITREP</span>
+                    <h2 class="font-sans text-5xl md:text-7xl font-medium leading-[0.9] tracking-tight mb-8">
+                        THE OLD PLAYBOOK<br>
+                        IS BROKEN.
+                    </h2>
+                    <p class="text-xl md:text-2xl font-sans font-medium leading-tight text-slate-800 max-w-2xl mx-auto">
+                        "If you’re an SEO, your playbook is out of date. You’re preparing for a world where rankings
+                        don’t exist."
+                    </p>
+                </div>
+
+                <!-- Mini-Essay Content -->
+                <div class="prose prose-lg text-slate-900 font-medium leading-relaxed space-y-8 max-w-none">
+
+                    <p>
+                        For two decades, we optimized for <strong>Ten Blue Links</strong>. We built links, we targeted
+                        keywords, and we measured traffic. It was a predictable game with stable rules.
+                    </p>
+
+                    <!-- Old vs New Metric Callout -->
+                    <div class="my-12 bg-slate-900/5 border border-slate-900/10 p-8 md:p-12 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-slate-900"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+                            <div class="group opacity-60">
+                                <h3
+                                    class="font-mono text-xs uppercase text-slate-600 mb-3 font-bold flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Old_Metric
+                                </h3>
+                                <p
+                                    class="font-sans text-xl md:text-2xl text-slate-500 line-through decoration-slate-900 decoration-2">
+                                    “How much traffic did we get?”
+                                </p>
+                            </div>
+                            <div class="group">
+                                <h3
+                                    class="font-mono text-xs uppercase text-slate-900 mb-3 font-bold flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> New_Metric
+                                </h3>
+                                <p class="font-sans text-2xl md:text-3xl text-slate-900 font-bold leading-tight">
+                                    “What does AI say when your customers talk to it?”
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Background Noise specific to box -->
+                        <div class="absolute inset-0 opacity-10 bg-noise mix-blend-multiply pointer-events-none"></div>
+                    </div>
+
+                    <div class="mt-12 mb-6">
+                        <h3
+                            class="font-mono text-sm uppercase tracking-widest font-bold text-slate-500 mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-slate-900"></span>
+                            The_Shift
+                        </h3>
+                        <p>
+                            AI Answer Engines (ChatGPT, Perplexity, SearchGPT) don't care about your backlinks. They
+                            care about <strong>Information Gain</strong>. They don't send traffic; they synthesize
+                            answers.
+                            In a world with no stable maps, your only real advantage is <span
+                                class="bg-white px-1 shadow-[2px_2px_0_0_#0f172a] border border-slate-900 inline-block transform -skew-x-3 text-sm font-bold mx-1">VELOCITY_OF_LEARNING</span>.
+                        </p>
+                    </div>
+
+                    <!-- Rules List -->
+                    <div class="bg-white border border-slate-900 p-8 md:p-10 shadow-[8px_8px_0_0_#0f172a]">
+                        <h4 class="font-sans font-bold text-2xl mb-6">The New Rules of Engagement:</h4>
+                        <ul class="space-y-4 font-mono text-sm md:text-base">
+                            <li class="flex items-start gap-4">
+                                <span class="text-slate-900 font-bold bg-brand-neon px-1">01</span>
+                                <span>Optimize for the <strong>Answer</strong>, not the Click.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-slate-900 font-bold bg-brand-neon px-1">02</span>
+                                <span>Own the <strong>Data Source</strong>, not the Aggregator.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-slate-900 font-bold bg-brand-neon px-1">03</span>
+                                <span>Build <strong>Brand Gravity</strong> to bypass search entirely.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        We are building the lab for this new reality. A place to test, break, and rebuild our
+                        understanding of search in real-time.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Subtle Dither Texture Overlay -->
+            <div class="absolute inset-0 pointer-events-none opacity-50 bg-noise mix-blend-overlay"></div>
+
+            <!-- Technical Data Border Bottom (Ruler Style) -->
+            <div
+                class="absolute bottom-0 left-0 right-0 h-4 w-full z-10 bg-ruler opacity-20 text-slate-900 border-t border-slate-900/10">
+            </div>
+
+        </section>
+
+        <!-- Methodology / Three Columns -->
+        <section class="border-b border-slate-900 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32">
+                <div class="mb-16 flex items-baseline justify-between border-b border-slate-300 pb-6">
+                    <h2 class="font-sans text-4xl md:text-6xl font-bold tracking-tight text-slate-900">A MEMBERSHIP FOR
+                        THE FUTURE OF SEARCH
+                    </h2>
+
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Card 1: Strategic Upskilling -->
+                    <div
+                        class="bg-white border border-slate-300 p-8 flex flex-col justify-between hover:border-slate-900 transition-colors group h-full shadow-sm hover:shadow-lg duration-300">
+                        <div>
+                            <div
+                                class="w-12 h-12 bg-slate-100 border border-slate-200 flex items-center justify-center font-mono font-bold text-xl mb-6 group-hover:bg-brand-neon group-hover:border-slate-900 transition-colors">
+                                A</div>
+                            <h3 class="font-sans text-2xl font-bold mb-4">Strategic Upskilling</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                                Continuous education modules on LLMO, GEO, and AI-driven workflows. Stop guessing and
+                                start engineering.
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-6">
+                            <span
+                                class="font-mono text-[10px] uppercase text-slate-400 mb-3 block tracking-widest">Included_Assets:</span>
+                            <ul class="font-mono text-xs space-y-3 text-slate-600">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>LLMO Curriculum</strong><br><span
+                                            class="text-slate-400 font-sans">Video modules on
+                                            optimization.</span></span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Masterclasses</strong><br><span
+                                            class="text-slate-400 font-sans">Monthly guest expert
+                                            deep-dives.</span></span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>SOP Library</strong><br><span
+                                            class="text-slate-400 font-sans">Copy-paste production
+                                            workflows.</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Bespoke Intelligence -->
+                    <div
+                        class="bg-white border border-slate-300 p-8 flex flex-col justify-between hover:border-slate-900 transition-colors group h-full shadow-sm hover:shadow-lg duration-300">
+                        <div>
+                            <div
+                                class="w-12 h-12 bg-slate-100 border border-slate-200 flex items-center justify-center font-mono font-bold text-xl mb-6 group-hover:bg-brand-neon group-hover:border-slate-900 transition-colors">
+                                B</div>
+                            <h3 class="font-sans text-2xl font-bold mb-4">Bespoke Intelligence</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                                Access to proprietary research and datasets monitoring AI Overviews volatility. See the
+                                signals others miss.
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-6">
+                            <span
+                                class="font-mono text-[10px] uppercase text-slate-400 mb-3 block tracking-widest">Included_Assets:</span>
+                            <ul class="font-mono text-xs space-y-3 text-slate-600">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Volatility Datasets</strong><br><span
+                                            class="text-slate-400 font-sans">Weekly data drops across 12
+                                            verticals.</span></span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Prompt Vault</strong><br><span class="text-slate-400 font-sans">Tested
+                                            analysis prompts.</span></span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Hall Monitor Access</strong><br><span
+                                            class="text-slate-400 font-sans">Enterprise observability
+                                            tools.</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: The Lab / Network -->
+                    <div
+                        class="bg-white border border-slate-300 p-8 flex flex-col justify-between hover:border-slate-900 transition-colors group h-full shadow-sm hover:shadow-lg duration-300">
+                        <div>
+                            <div
+                                class="w-12 h-12 bg-slate-100 border border-slate-200 flex items-center justify-center font-mono font-bold text-xl mb-6 group-hover:bg-brand-neon group-hover:border-slate-900 transition-colors">
+                                C</div>
+                            <h3 class="font-sans text-2xl font-bold mb-4">The Lab / Network</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                                A private, high-signal peer group. A safe space for in-house leads and agency owners to
+                                compare notes.
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-6">
+                            <span
+                                class="font-mono text-[10px] uppercase text-slate-400 mb-3 block tracking-widest">Included_Assets:</span>
+                            <ul class="font-mono text-xs space-y-3 text-slate-600">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Private Slack</strong><br><span class="text-slate-400 font-sans">50+
+                                            Senior In-House Leads.</span></span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Bi-Weekly Strategy</strong><br><span
+                                            class="text-slate-400 font-sans">Live "Office Hours" calls.</span></span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon text-base font-bold">›</span>
+                                    <span><strong>Agency Sales Deck</strong><br><span
+                                            class="text-slate-400 font-sans">White-label sales slides.</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hall Partnership -->
+        <section class="py-24 md:py-32 border-b border-slate-900 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <!-- Hall Partnership -->
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-24 lg:mb-32 border-b border-slate-300 pb-24 top-part">
+                    <div>
+                        <span
+                            class="text-brand-neon font-mono text-xs uppercase tracking-widest bg-slate-900 px-3 py-1 mb-6 inline-block pixel-corners">
+                            // Bundle_Active
+                        </span>
+                        <h2 class="font-sans text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+                            THE LAB REQUIRES DATA.
+                        </h2>
+                        <p class="text-slate-600 text-xl mb-8 leading-relaxed font-medium">
+                            You can't learn inference optimization without getting your hands dirty. We believe everyone
+                            needs enterprise-grade data monitoring to compete.
+                        </p>
+                        <p class="text-slate-500 mb-8 leading-relaxed text-lg">
+                            That's why every membership includes bundled access to <strong
+                                class="text-slate-900">Hall</strong>
+                            (usehall.com) — the premier prompt monitoring and observability platform.
+                        </p>
+                        <div class="flex items-center gap-4 text-xs font-mono text-slate-900 font-bold">
+                            <span class="bg-brand-neon px-3 py-1.5">[ STATUS: INTEGRATED ]</span>
+                            <span class="bg-white border border-slate-900 px-3 py-1.5">[ VALUE: INCLUDED ]</span>
+                        </div>
+                    </div>
+                    <!-- Visual / Terminal effect -->
+                    <div
+                        class="bg-slate-900 border border-slate-900 p-8 shadow-[8px_8px_0px_0px_#cbd5e1] font-mono text-sm pixel-corners">
+                        <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                            <div class="w-3 h-3 bg-red-500 pixel-corners"></div>
+                            <div class="w-3 h-3 bg-yellow-500 pixel-corners"></div>
+                            <div class="w-3 h-3 bg-green-500 pixel-corners"></div>
+                            <span class="text-slate-500 ml-2">hall_monitor.sh</span>
+                        </div>
+                        <div class="space-y-4 text-slate-400">
+                            <div>> initiating_sequence...</div>
+                            <div>> connecting_to_hall_api... <span class="text-brand-neon">SUCCESS</span></div>
+                            <div>> monitoring_prompts... <span class="text-white">ACTIVE</span></div>
+                            <div class="opacity-50">> fetching_volatility_index...</div>
+                            <div class="opacity-30">> analyzing_response_quality...</div>
+                            <br>
+                            <div class="text-white">
+                                <span class="text-brand-neon">ALERT:</span> Shift in answer sentiment detected.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner Discounts -->
+                <div class="text-center mb-16">
+                    <h2 class="font-sans text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                        AI SEARCH TOOLKIT
+                    </h2>
+                    <p class="text-slate-500 text-sm font-mono tracking-widest uppercase">Launch discounts bundled in.
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <!-- AirOps -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners h-24">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans text-lg">AirOps</div>
+                    </div>
+                    <!-- Vercel -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners h-24">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans text-lg">Vercel</div>
+                    </div>
+                    <!-- Semrush -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners h-24">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans text-lg">Semrush</div>
+                    </div>
+                    <!-- Hall -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners h-24">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans text-lg">Hall</div>
+                    </div>
+                    <!-- Clearscope -->
+                    <div
+                        class="border border-slate-300 bg-white p-6 flex items-center justify-center text-center hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_#0f172a] transition-all pixel-corners h-24">
+                        <div class="font-bold text-slate-900 tracking-tight font-sans text-lg">Clearscope</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What to Expect Section -->
+        <section id="what-to-expect" class="py-24 md:py-32 relative border-b border-slate-900 bg-white">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row gap-16 md:gap-32 items-start">
+                    <div class="md:w-1/3 sticky top-32">
+                        <span
+                            class="font-mono text-xs text-brand-neon bg-slate-900 px-3 py-1 uppercase tracking-widest pixel-corners inline-block">Onboarding_Protocol</span>
+                        <h2 class="font-sans text-4xl md:text-5xl font-bold text-slate-900 mt-8 mb-8">
+                            WHAT_TO_EXPECT
+                        </h2>
+                        <p class="text-lg text-slate-600 leading-relaxed font-body border-l-2 border-slate-200 pl-6">
+                            We don't just dump you in a Slack channel. We have a structured onboarding process to ensure
+                            you get value from Day 1.
+                        </p>
+                    </div>
+
+                    <div class="md:w-2/3 space-y-16">
+                        <!-- Step 1 -->
+                        <div class="flex gap-8 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-12 h-12 bg-slate-900 text-brand-neon flex items-center justify-center font-mono text-base font-bold z-10 box-shadow-neon border border-slate-900 pixel-corners">
+                                    01</div>
+                                <div
+                                    class="w-px h-full bg-slate-200 group-last:hidden border-l-2 border-dotted border-slate-300 my-4">
+                                </div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 font-sans">Immediate Access</h3>
+                                <p class="text-slate-500 mb-4 text-base leading-relaxed max-w-xl">
+                                    You'll get an invite to the private Slack and the Learning Portal. Introduce
+                                    yourself in <span
+                                        class="font-mono text-xs text-slate-900 bg-slate-100 px-2 py-0.5 border border-slate-300">#introductions</span>
+                                    and get your first "High Signal" welcome pack.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex gap-8 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-12 h-12 bg-white border border-slate-900 text-slate-900 flex items-center justify-center font-mono text-base font-bold z-10 hover:bg-brand-neon transition-colors pixel-corners">
+                                    02</div>
+                                <div
+                                    class="w-px h-full bg-slate-200 group-last:hidden border-l-2 border-dotted border-slate-300 my-4">
+                                </div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 font-sans">The "State of AI Search"
+                                    Audit</h3>
+                                <p class="text-slate-500 mb-4 text-base leading-relaxed max-w-xl">
+                                    In your first week, you'll receive our proprietary audit template. Run it on your
+                                    brand (or your client's) to establish a baseline for AI visibility.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex gap-8 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-12 h-12 bg-white border border-slate-900 text-slate-900 flex items-center justify-center font-mono text-base font-bold z-10 hover:bg-brand-neon transition-colors pixel-corners">
+                                    03</div>
+                                <div
+                                    class="w-px h-full bg-slate-200 group-last:hidden border-l-2 border-dotted border-slate-300 my-4">
+                                </div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 font-sans">Founder Onboarding Call
+                                </h3>
+                                <p class="text-slate-500 mb-4 text-base leading-relaxed max-w-xl">
+                                    Join a small-group call with Tom & Jeremy. We'll review your audit results and help
+                                    you prioritize your roadmap for the next 90 days.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="flex gap-8 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-12 h-12 bg-white border border-slate-900 text-slate-900 flex items-center justify-center font-mono text-base font-bold z-10 hover:bg-brand-neon transition-colors pixel-corners">
+                                    04</div>
+                            </div>
+                            <div class="pb-8 pt-1">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 font-sans">First Lab Session</h3>
+                                <p class="text-slate-500 mb-4 text-base leading-relaxed max-w-xl">
+                                    Attend your first bi-weekly strategy call. Bring a specific challenge, get feedback
+                                    from the room. No recording, Chatham House Rules.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Section -->
+        <section id="founders" class="py-24 md:py-32 relative border-b border-slate-900 bg-brand-neon">
+            <!-- Technical Data Border Top (Ruler Style) -->
+            <div
+                class="absolute top-0 left-0 right-0 h-4 w-full z-10 bg-ruler opacity-20 text-slate-900 border-b border-slate-900/10">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 md:px-12 pt-16">
+                <div class="text-center mb-20">
+                    <h2 class="font-sans text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                        SYSTEM_ARCHITECTS
+                    </h2>
+                    <p class="font-mono text-slate-800 font-bold tracking-widest uppercase">The humans in the loop.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 max-w-4xl mx-auto">
+                    <!-- Tom -->
+                    <div class="group">
+                        <div class="relative mb-8">
+                            <div
+                                class="aspect-square bg-slate-900 border-2 border-slate-900 p-3 pixel-corners relative">
+                                <div class="bg-gray-200 w-full h-full relative overflow-hidden">
+                                    <img src="images/tom_critchlow.png" alt="Tom Critchlow"
+                                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-slate-900"></div>
+                                <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-white"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-3 font-sans">Tom Critchlow</h3>
+                        <div
+                            class="text-slate-900 text-xs font-mono mb-5 uppercase tracking-widest bg-white inline-block px-3 py-1 border border-slate-900">
+                            Strategy_Lead
+                        </div>
+                        <p class="text-slate-800 text-lg leading-relaxed font-medium">
+                            Strategic consultant for Google, NYT, and startups. Building the bridge between SEO and
+                            AI strategy.
+                        </p>
+                    </div>
+
+                    <!-- Jeremy -->
+                    <div class="group">
+                        <div class="relative mb-8">
+                            <div
+                                class="aspect-square bg-slate-900 border-2 border-slate-900 p-3 pixel-corners relative">
+                                <div class="bg-gray-200 w-full h-full relative overflow-hidden">
+                                    <img src="images/jeremy_cabral.png" alt="Jeremy Cabral"
+                                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-slate-900"></div>
+                                <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-white"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-3 font-sans">Jeremy Cabral</h3>
+                        <div
+                            class="text-slate-900 text-xs font-mono mb-5 uppercase tracking-widest bg-white inline-block px-3 py-1 border border-slate-900">
+                            Operations_Lead
+                        </div>
+                        <p class="text-slate-800 text-lg leading-relaxed font-medium">
+                            Founder of Finder.com (exit). Scaling operations and community infrastructure for the
+                            next generation of search.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Data Border Bottom (Ruler Style) -->
+            <div
+                class="absolute bottom-0 left-0 right-0 h-4 w-full z-10 bg-ruler opacity-20 text-slate-900 border-t border-slate-900/10">
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="py-24 md:py-32 bg-slate-900 text-white relative overflow-hidden bg-noise">
+            <!-- Top gradient line -->
+            <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-neon to-transparent opacity-50">
+            </div>
+            <!-- Bottom Dither -->
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent opacity-80"
+                style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 4px 4px;">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div class="flex flex-col justify-center">
+                        <span class="font-mono text-xs text-brand-neon uppercase tracking-widest mb-6 block">///
+                            Investment_Protocol</span>
+                        <h2 class="font-sans text-6xl font-bold mb-8">Membership<br>Options.</h2>
+                        <p class="font-body text-slate-400 text-xl max-w-md leading-relaxed mb-8">
+                            We are cheaper than one hour of a consultant's time, but give you a year of strategic
+                            advantage.
+                        </p>
+                        <div>
+                            <div
+                                class="p-4 bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-block rounded-sm pixel-corners">
+                                * Includes full access to Hall (usehall.com) tools.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-slate-50 text-slate-900 p-10 border border-white box-shadow-neon relative transform hover:-translate-y-1 transition-transform duration-300 pixel-corners">
+                            <div
+                                class="absolute top-0 right-0 bg-brand-neon text-slate-900 font-mono text-[10px] uppercase font-bold px-3 py-1 pixel-corners">
+                                Launch_Offer_Active
+                            </div>
+                            <div class="mb-6">
+                                <h3 class="font-sans text-3xl font-bold mb-1">Founding Member</h3>
+                                <p class="font-mono text-xs text-slate-500 uppercase tracking-wide">For In-House Leads &
+                                    Solo Consultants</p>
+                            </div>
+                            <div class="flex items-baseline gap-2 mb-6 border-b border-slate-200 pb-6">
+                                <span class="text-5xl font-bold tracking-tighter">$250</span>
+                                <span class="text-sm font-bold text-slate-500">/ 6 MONTHS</span>
+                            </div>
+
+                            <ul class="space-y-4 mb-8 font-mono text-xs md:text-sm">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-dark font-bold">✓</span>
+                                    <span>LLMO Academy (Video Modules)</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-dark font-bold">✓</span>
+                                    <span>Weekly Data Drops (Volatility)</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-dark font-bold">✓</span>
+                                    <span>Private Slack Community</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-dark font-bold">✓</span>
+                                    <span><span class="bg-brand-neon px-1">BONUS:</span> Hall Monitor Access</span>
+                                </li>
+                            </ul>
+
+                            <a href="mailto:tom@tomcritchlow.com?subject=Founding%20Member%20Application"
+                                class="block w-full py-4 bg-slate-900 text-white font-mono font-bold text-center uppercase hover:bg-brand-neon hover:text-slate-900 border border-slate-900 transition-colors tracking-wide pixel-corners">
+                                Become_Founding_Member
+                            </a>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-slate-900 text-white p-10 border border-slate-700 hover:border-brand-neon relative transform hover:-translate-y-1 transition-all duration-300 pixel-corners group">
+                            <div class="mb-6">
+                                <h3
+                                    class="font-sans text-3xl font-bold mb-1 group-hover:text-brand-neon transition-colors">
+                                    Agency Partner</h3>
+                                <p class="font-mono text-xs text-slate-500 uppercase tracking-wide">For Teams & Agencies
+                                </p>
+                            </div>
+                            <div class="flex items-baseline gap-2 mb-6 border-b border-slate-800 pb-6">
+                                <span class="text-4xl font-bold tracking-tighter">Custom</span>
+                            </div>
+
+                            <ul class="space-y-4 mb-8 font-mono text-xs md:text-sm text-slate-400">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon font-bold">✓</span>
+                                    <span>Multi-seat licenses</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon font-bold">✓</span>
+                                    <span>White-label strategy decks</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-brand-neon font-bold">✓</span>
+                                    <span>"Train the Trainer" workshops</span>
+                                </li>
+                            </ul>
+
+                            <a href="mailto:tom@tomcritchlow.com?subject=Agency%20Partner%20Inquiry"
+                                class="block w-full py-4 bg-transparent text-white font-mono font-bold text-center uppercase hover:bg-slate-800 border border-slate-700 hover:border-slate-500 transition-colors tracking-wide pixel-corners">
+                                Contact_Intelligence
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black text-slate-500 py-12 border-t border-slate-900 font-mono text-xs">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 bg-brand-neon"></div>
+                    <span class="text-slate-300 uppercase tracking-widest">AI Search Leaders</span>
+                </div>
+                <div>
+                    © 2026. All Systems Nominal.
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Simple scroll reveal effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('section > div').forEach(section => {
+                section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-8');
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+
+</html>
