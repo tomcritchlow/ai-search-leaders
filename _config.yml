@@ -3,3 +3,7 @@ description: Exploring the future of search and artificial intelligence.
 url: "https://searchleaders.ai"
 plugins:
   - jekyll-seo-tag
+
+collections:
+  library:
+    output: true

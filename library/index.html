@@ -1,0 +1,168 @@
+---
+layout: default
+title: Library
+description: "Curated research, datasets, and insights on AI and Search."
+---
+
+<div class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Header -->
+    <header class="mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold font-sans text-white mb-6">
+            Library
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl font-mono">
+            // Curated links, research, and analysis from the frontier of AI Search.
+        </p>
+    </header>
+
+    <!-- Search & Filter Interface -->
+    <div id="library-app" class="mb-12">
+
+        <!-- Search Bar -->
+        <div class="mb-8">
+            <div class="relative max-w-2xl">
+                <input type="text" id="search-input" placeholder="SEARCH LIBRARY..."
+                    class="w-full bg-slate-900/50 border border-slate-700 text-white px-6 py-4 font-mono focus:border-neon-green focus:outline-none focus:ring-1 focus:ring-neon-green/50 placeholder-slate-600 rounded-sm">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tags Filter -->
+        <div class="flex flex-wrap gap-2 mb-12" id="tags-container">
+            <button
+                class="filter-tag active px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="all">
+                ALL
+            </button>
+            {% assign all_tags = site.library | map: "tags" | flatten | uniq | sort %}
+            {% for tag in all_tags %}
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="{{ tag }}">
+                {{ tag }}
+            </button>
+            {% endfor %}
+        </div>
+
+        <!-- Results Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="items-grid">
+            {% for item in site.library reversed %}
+            <article
+                class="library-item group relative bg-slate-900/40 border border-slate-800 hover:border-neon-green/50 transition-all duration-300 p-6 flex flex-col h-full"
+                data-title="{{ item.title | downcase }}" data-tags="{{ item.tags | join: ',' | downcase }}">
+
+                <div
+                    class="absolute inset-0 bg-neon-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                </div>
+
+                <div class="relative z-10 flex-1">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        {% for tag in item.tags %}
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            {{ tag }}
+                        </span>
+                        {% endfor %}
+                    </div>
+
+                    <h2 class="text-xl font-bold text-white mb-3 group-hover:text-neon-green transition-colors">
+                        <a href="{{ item.url }}" class="focus:outline-none">
+                            <span class="absolute inset-0"></span>
+                            {{ item.title }}
+                        </a>
+                    </h2>
+
+                    <div class="text-sm text-slate-400 mb-6 line-clamp-3">
+                        {{ item.content | strip_html | truncatewords: 30 }}
+                    </div>
+                </div>
+
+                <div
+                    class="relative z-10 pt-6 border-t border-slate-800/50 mt-auto flex justify-between items-center text-xs font-mono text-slate-500">
+                    <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%B %d, %Y" }}</time>
+                    <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="hidden text-center py-20">
+            <p class="text-slate-500 font-mono text-lg">// No items found matching your criteria.</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('search-input');
+        const tagsContainer = document.getElementById('tags-container');
+        const itemsGrid = document.getElementById('items-grid');
+        const items = document.querySelectorAll('.library-item');
+        const noResults = document.getElementById('no-results');
+        const filterTags = document.querySelectorAll('.filter-tag');
+
+        let activeTag = 'all';
+
+        // Search Function
+        function filterItems() {
+            const query = searchInput.value.toLowerCase();
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const title = item.dataset.title;
+                const tags = item.dataset.tags.split(',');
+
+                const matchesSearch = title.includes(query);
+                const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+
+                if (matchesSearch && matchesTag) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Search Event Listener
+        searchInput.addEventListener('input', filterItems);
+
+        // Tag Filter Event Listeners
+        filterTags.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterTags.forEach(b => {
+                    b.classList.remove('active', 'bg-neon-green', 'text-black', 'border-neon-green');
+                    b.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-700');
+                });
+
+                // Add active class to clicked
+                btn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
+                btn.classList.add('active', 'bg-neon-green', 'text-black', 'border-neon-green');
+
+                activeTag = btn.dataset.tag;
+                filterItems();
+            });
+        });
+
+        // Set initial active state for 'ALL'
+        const allBtn = document.querySelector('[data-tag="all"]');
+        if (allBtn) {
+            allBtn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
+            allBtn.classList.add('active', 'bg-neon-green', 'text-black', 'border-neon-green');
+        }
+    });
+</script>
