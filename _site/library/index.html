@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library | AI Search Leaders</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description"
+        content="Curated research, datasets, and insights on AI and Search.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            neon: '#72e882',
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                        },
+                        slate: {
+                            850: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern-dark': 'linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+        }
+
+        .pixel-corners {
+            clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border: 2px solid #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 min-h-screen text-slate-300 font-body selection:bg-brand-neon selection:text-slate-900">
+
+    <!-- Fixed Background Grid -->
+    <div class="fixed inset-0 bg-grid-pattern-dark bg-grid z-0 opacity-20 pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-4 h-4 bg-brand-neon border border-slate-900 group-hover:scale-110 transition-transform">
+                </div>
+                <span
+                    class="font-sans font-bold text-lg tracking-tight text-white group-hover:text-brand-neon transition-colors">AI_SEARCH_LEADERS</span>
+            </a>
+            <div class="flex items-center gap-6 font-mono text-xs font-medium text-slate-500">
+                <a href="/library/" class="text-brand-neon hover:text-white transition-colors">[ Library ]</a>
+                <a href="/about" class="hover:text-white transition-colors">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Header -->
+    <header class="mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold font-sans text-white mb-6">
+            Library
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl font-mono">
+            // Curated links, research, and analysis from the frontier of AI Search.
+        </p>
+    </header>
+
+    <!-- Search & Filter Interface -->
+    <div id="library-app" class="mb-12">
+
+        <!-- Search Bar -->
+        <div class="mb-8">
+            <div class="relative max-w-2xl">
+                <input type="text" id="search-input" placeholder="SEARCH LIBRARY..."
+                    class="w-full bg-slate-900/50 border border-slate-700 text-white px-6 py-4 font-mono focus:border-neon-green focus:outline-none focus:ring-1 focus:ring-neon-green/50 placeholder-slate-600 rounded-sm">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tags Filter -->
+        <div class="flex flex-wrap gap-2 mb-12" id="tags-container">
+            <button
+                class="filter-tag active px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="all">
+                ALL
+            </button>
+            
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="agents">
+                agents
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="ai">
+                ai
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="api">
+                api
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="data">
+                data
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="future">
+                future
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="infrastructure">
+                infrastructure
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="search">
+                search
+            </button>
+            
+            <button
+                class="filter-tag px-3 py-1 bg-slate-800 text-slate-400 text-xs font-mono uppercase tracking-widest rounded-sm border border-slate-700 hover:border-neon-green hover:text-white transition-all"
+                data-tag="tools">
+                tools
+            </button>
+            
+        </div>
+
+        <!-- Results Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="items-grid">
+            
+            <article
+                class="library-item group relative bg-slate-900/40 border border-slate-800 hover:border-neon-green/50 transition-all duration-300 p-6 flex flex-col h-full"
+                data-title="dataforseo: the backbone of ai search" data-tags="data,api,tools,infrastructure">
+
+                <div
+                    class="absolute inset-0 bg-neon-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                </div>
+
+                <div class="relative z-10 flex-1">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            data
+                        </span>
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            api
+                        </span>
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            tools
+                        </span>
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            infrastructure
+                        </span>
+                        
+                    </div>
+
+                    <h2 class="text-xl font-bold text-white mb-3 group-hover:text-neon-green transition-colors">
+                        <a href="/library/dataforseo-review.html" class="focus:outline-none">
+                            <span class="absolute inset-0"></span>
+                            DataForSEO: The Backbone of AI Search
+                        </a>
+                    </h2>
+
+                    <div class="text-sm text-slate-400 mb-6 line-clamp-3">
+                        Building AI search tools requires robust data pipelines. DataForSEO provides the comprehensive SERP data needed to train and feed agentic models. Why it matters Real-time data: Essential for RAG applications....
+                    </div>
+                </div>
+
+                <div
+                    class="relative z-10 pt-6 border-t border-slate-800/50 mt-auto flex justify-between items-center text-xs font-mono text-slate-500">
+                    <time datetime="2026-01-25T00:00:00-05:00">January 25, 2026</time>
+                    <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </div>
+            </article>
+            
+            <article
+                class="library-item group relative bg-slate-900/40 border border-slate-800 hover:border-neon-green/50 transition-all duration-300 p-6 flex flex-col h-full"
+                data-title="the future of search: agentic ai" data-tags="ai,agents,search,future">
+
+                <div
+                    class="absolute inset-0 bg-neon-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                </div>
+
+                <div class="relative z-10 flex-1">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            ai
+                        </span>
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            agents
+                        </span>
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            search
+                        </span>
+                        
+                        <span
+                            class="text-[10px] font-mono text-neon-green border border-neon-green/30 px-2 py-0.5 rounded-sm">
+                            future
+                        </span>
+                        
+                    </div>
+
+                    <h2 class="text-xl font-bold text-white mb-3 group-hover:text-neon-green transition-colors">
+                        <a href="/library/sample-agentic-ai.html" class="focus:outline-none">
+                            <span class="absolute inset-0"></span>
+                            The Future of Search: Agentic AI
+                        </a>
+                    </h2>
+
+                    <div class="text-sm text-slate-400 mb-6 line-clamp-3">
+                        The landscape of search is shifting rapidly towards agentic AI. This article explores how autonomous agents will navigate the web on our behalf, fundamentally changing the SEO landscape. “The user...
+                    </div>
+                </div>
+
+                <div
+                    class="relative z-10 pt-6 border-t border-slate-800/50 mt-auto flex justify-between items-center text-xs font-mono text-slate-500">
+                    <time datetime="2026-01-20T00:00:00-05:00">January 20, 2026</time>
+                    <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </div>
+            </article>
+            
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="hidden text-center py-20">
+            <p class="text-slate-500 font-mono text-lg">// No items found matching your criteria.</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('search-input');
+        const tagsContainer = document.getElementById('tags-container');
+        const itemsGrid = document.getElementById('items-grid');
+        const items = document.querySelectorAll('.library-item');
+        const noResults = document.getElementById('no-results');
+        const filterTags = document.querySelectorAll('.filter-tag');
+
+        let activeTag = 'all';
+
+        // Search Function
+        function filterItems() {
+            const query = searchInput.value.toLowerCase();
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const title = item.dataset.title;
+                const tags = item.dataset.tags.split(',');
+
+                const matchesSearch = title.includes(query);
+                const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+
+                if (matchesSearch && matchesTag) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Search Event Listener
+        searchInput.addEventListener('input', filterItems);
+
+        // Tag Filter Event Listeners
+        filterTags.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterTags.forEach(b => {
+                    b.classList.remove('active', 'bg-neon-green', 'text-black', 'border-neon-green');
+                    b.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-700');
+                });
+
+                // Add active class to clicked
+                btn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
+                btn.classList.add('active', 'bg-neon-green', 'text-black', 'border-neon-green');
+
+                activeTag = btn.dataset.tag;
+                filterItems();
+            });
+        });
+
+        // Set initial active state for 'ALL'
+        const allBtn = document.querySelector('[data-tag="all"]');
+        if (allBtn) {
+            allBtn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
+            allBtn.classList.add('active', 'bg-neon-green', 'text-black', 'border-neon-green');
+        }
+    });
+</script>
+    </main>
+
+    <footer class="py-12 border-t border-slate-800 mt-24">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-600 font-mono text-xs">
+            // AI SEARCH LEADERS /// SYSTEM_ONLINE
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Lab | AI Search Leaders</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description"
+        content="Optimizing for the future of search.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            neon: '#72e882',
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                        },
+                        slate: {
+                            850: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern-dark': 'linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+        }
+
+        .pixel-corners {
+            clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border: 2px solid #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 min-h-screen text-slate-300 font-body selection:bg-brand-neon selection:text-slate-900">
+
+    <!-- Fixed Background Grid -->
+    <div class="fixed inset-0 bg-grid-pattern-dark bg-grid z-0 opacity-20 pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-4 h-4 bg-brand-neon border border-slate-900 group-hover:scale-110 transition-transform">
+                </div>
+                <span
+                    class="font-sans font-bold text-lg tracking-tight text-white group-hover:text-brand-neon transition-colors">AI_SEARCH_LEADERS</span>
+            </a>
+            <div class="flex items-center gap-6 font-mono text-xs font-medium text-slate-500">
+                <a href="/library/" class="text-brand-neon hover:text-white transition-colors">[ Library ]</a>
+                <a href="/about" class="hover:text-white transition-colors">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <section class="py-20 min-h-screen">
+    <div class="max-w-3xl mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-12 tracking-tighter">About the Lab</h1>
+        <div class="prose prose-lg max-w-none">
+            <p>The AI Search Lab is a private community for senior SEO professionals, agency owners, and in-house leads. We navigate the shift from traditional search engine optimization to <strong>AI-driven visibility</strong>.</p>
+
+<h2 id="the-shift">The Shift</h2>
+
+<p>Search is undergoing its biggest transformation in 20 years. The move from “ten blue links” to AI Overviews, Chat-based search, and vertical AI agents requires a completely new playbook.</p>
+
+<h2 id="our-philosophy">Our Philosophy</h2>
+
+<p>We believe in <strong>high-signal, low-noise</strong> intelligence.</p>
+
+<ul>
+  <li><strong>Observation</strong>: We monitor the SERPs daily for volatility and new patterns.</li>
+  <li><strong>Experimentation</strong>: We test hypotheses in a controlled environment.</li>
+  <li><strong>Collaboration</strong>: We share findings openly within the membership.</li>
+</ul>
+
+<h2 id="the-team">The Team</h2>
+
+<p><strong>Tom Critchlow</strong> - Strategy Lead. Strategic consultant for Google, NYT, and startups.
+<strong>Jeremy Cabral</strong> - Operations Lead. Founder of Finder.com.</p>
+
+<h2 id="contact">Contact</h2>
+
+<p>For beta inquiries: <a href="mailto:beta@searchleaders.ai">beta@searchleaders.ai</a></p>
+
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer class="py-12 border-t border-slate-800 mt-24">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-600 font-mono text-xs">
+            // AI SEARCH LEADERS /// SYSTEM_ONLINE
+        </div>
+    </footer>
+
+</body>
+
+</html>

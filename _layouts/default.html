@@ -4,144 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | Search Leaders</title>
-    <meta name="description"
-        content="{% if page.description %}{{ page.description }}{% else %}Navigating the shift from traditional SEO to AI-driven search. A continuous learning membership for senior professionals.{% endif %}">
-    {% include analytics.html %}
+    <title>{% if page.title %}{{ page.title }} | {% endif %}AI Search Leaders</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description"
+        content="{% if page.description %}{{ page.description }}{% else %}Navigating the shift from traditional SEO to AI-driven search.{% endif %}">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Space Grotesk', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        neon: {
-                            green: '#ccff00',
-                            purple: '#d946ef',
-                            cyan: '#06b6d4',
+                        brand: {
+                            neon: '#72e882',
+                            dark: '#0f172a',
+                            light: '#f8fafc',
                         },
                         slate: {
                             850: '#1e293b',
+                            900: '#0f172a',
                             950: '#020617',
                         }
                     },
                     backgroundImage: {
-                        'cyber-grid': 'linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)',
+                        'grid-pattern-dark': 'linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)',
                     },
                     animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'glitch': 'glitch 1s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blink': 'blink 1s step-end infinite',
                     },
                     keyframes: {
-                        glitch: {
-                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                            '62%': { transform: 'translate(0,0) skew(5deg)' },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
                         }
-                    },
-                    typography: (theme) => ({
-                        DEFAULT: {
-                            css: {
-                                color: theme('colors.slate.300'),
-                                h1: { color: theme('colors.white') },
-                                h2: { color: theme('colors.white') },
-                                h3: { color: theme('colors.white') },
-                                h4: { color: theme('colors.white') },
-                                strong: { color: theme('colors.white') },
-                                code: { color: theme('colors.neon.green') },
-                                a: { color: theme('colors.neon.green') },
-                            },
-                        },
-                    }),
+                    }
                 }
             }
         }
     </script>
     <style>
         body {
-            background-color: #020617;
+            background-color: #0f172a;
             color: #e2e8f0;
         }
 
-        .cyber-grid-bg {
+        .bg-grid {
             background-size: 40px 40px;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
         }
 
-        .neon-text-shadow {
-            text-shadow: 0 0 10px rgba(204, 255, 0, 0.5);
+        .pixel-corners {
+            clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px);
         }
 
-        .neon-box-shadow {
-            box-shadow: 0 0 15px rgba(204, 255, 0, 0.2);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
 
-        .glitch-hover:hover {
-            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border: 2px solid #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
         }
     </style>
 </head>
 
-<body class="font-mono antialiased overflow-x-hidden selection:bg-neon-green selection:text-black">
+<body class="bg-slate-900 min-h-screen text-slate-300 font-body selection:bg-brand-neon selection:text-slate-900">
 
-    <!-- Background Grid -->
-    <div class="fixed inset-0 bg-cyber-grid cyber-grid-bg pointer-events-none z-0 opacity-20"></div>
-
-    <!-- Glow Effects -->
-    <div
-        class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-neon-purple/10 blur-[120px] rounded-full pointer-events-none z-0">
-    </div>
-    <div
-        class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-neon-green/5 blur-[120px] rounded-full pointer-events-none z-0">
-    </div>
+    <!-- Fixed Background Grid -->
+    <div class="fixed inset-0 bg-grid-pattern-dark bg-grid z-0 opacity-20 pointer-events-none"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 py-6 backdrop-blur-md border-b border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-3 group cursor-pointer">
-                <div
-                    class="w-8 h-8 bg-neon-green text-black flex items-center justify-center font-bold text-lg rounded-sm group-hover:bg-white transition-colors">
-                    _
+    <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-4 h-4 bg-brand-neon border border-slate-900 group-hover:scale-110 transition-transform">
                 </div>
                 <span
-                    class="font-bold tracking-tight text-white group-hover:text-neon-green transition-colors">AI_SEARCH_LEADERS</span>
+                    class="font-sans font-bold text-lg tracking-tight text-white group-hover:text-brand-neon transition-colors">AI_SEARCH_LEADERS</span>
             </a>
-            <div class="flex items-center gap-6">
-                <a href="/about"
-                    class="text-sm font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest hidden md:block">
-                    [ About ]
-                </a>
-                <a href="/#pricing"
-                    class="px-6 py-2 text-xs font-bold text-neon-green border border-neon-green/30 hover:bg-neon-green hover:text-black transition-all uppercase tracking-widest rounded-sm">
-                    [ Join_Beta ]
-                </a>
+            <div class="flex items-center gap-6 font-mono text-xs font-medium text-slate-500">
+                <a href="/library/" class="text-brand-neon hover:text-white transition-colors">[ Library ]</a>
+                <a href="/about" class="hover:text-white transition-colors">About</a>
             </div>
         </div>
     </nav>
 
-    <main class="relative z-10 pt-32">
+    <main class="relative z-10">
         {{ content }}
     </main>
 
-    <footer class="py-12 bg-slate-950 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <div class="flex items-center gap-2 text-white font-bold">
-                    <span class="text-neon-green">_</span> AI Search Leaders
-                </div>
-            </div>
-            <div class="text-slate-600 text-xs">
-                // © 2026 AI Search Leaders. All systems nominal.
-            </div>
+    <footer class="py-12 border-t border-slate-800 mt-24">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-600 font-mono text-xs">
+            // AI SEARCH LEADERS /// SYSTEM_ONLINE
         </div>
     </footer>
 
